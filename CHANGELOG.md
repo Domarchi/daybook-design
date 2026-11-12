@@ -1,5 +1,13 @@
 # Cambios
 
+## 0.3.0 — 2026-11-12
+
+- `--db-text-overline` (11 px) para etiquetas en mayúsculas con espaciado, el
+  tamaño que ya usaban el riel de Parte Diario y las etiquetas de Ticket.
+- `--db-radius-small` (4 px) para piezas chicas (teclas, casillas).
+- Prueba: `--db-text-emphasis` nunca baja de 16 px (los campos en el teléfono lo
+  usan para que iOS no haga zoom) y los radios crecen en orden.
+
 ## 0.2.0 — 2026-11-12
 
 - Escala compartida, igual en los dos temas, con los valores de Parte Diario:

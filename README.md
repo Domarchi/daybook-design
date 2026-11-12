@@ -3,7 +3,7 @@
 Fuente única del diseño de la familia Daybook: **Parte Diario**, **Daybook Travel** y **Daybook Ticket**.
 Un cambio aquí llega a las tres apps subiendo la versión en cada una; nadie vuelve a copiar colores a mano.
 
-## Qué trae (v0.2)
+## Qué trae (v0.3)
 
 - `src/tokens.json` — los colores (tema claro y oscuro) y la escala (fuentes, tamaños, radios, espacios), con un solo nombre por concepto.
 - `dist/tokens.css` — todo eso como variables `--db-*`, generado. **No se edita a mano.**
@@ -23,9 +23,9 @@ Escala (igual en los dos temas):
 | Grupo | Variables |
 |---|---|
 | Fuentes | `--db-font-sans` (Geist), `--db-font-mono` (Geist Mono) |
-| Texto | `--db-text-caption` 12, `-meta` 13, `-body` 14, `-emphasis` 16, `-heading` 18, `-title` 22, `-display` 28 |
+| Texto | `--db-text-overline` 11 (mayúsculas), `-caption` 12, `-meta` 13, `-body` 14, `-emphasis` 16, `-heading` 18, `-title` 22, `-display` 28 |
 | Peso / interlineado | `--db-weight-regular/medium/semibold/bold`, `--db-leading-tight/ui/body` |
-| Radios | `--db-radius-control` 8, `-card` 12, `-overlay` 12, `-pill` |
+| Radios | `--db-radius-small` 4, `-control` 8, `-card` 12, `-overlay` 12, `-pill` |
 | Espacios | `--db-space-1` 4 … `--db-space-8` 64 |
 | Movimiento | `--db-duration-fast`, `--db-duration-enter`, `--db-ease-out` |
 

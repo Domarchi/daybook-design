@@ -1,4 +1,4 @@
-/* @daybook/design 0.2.0 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.3.0 — generado desde src/tokens.json. No editar a mano. */
 
 /* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
    en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
@@ -7,6 +7,7 @@
 :root {
   --db-font-sans: var(--font-geist-sans, ui-sans-serif), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --db-font-mono: var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --db-text-overline: 11px;
   --db-text-caption: 12px;
   --db-text-meta: 13px;
   --db-text-body: 14px;
@@ -21,6 +22,7 @@
   --db-leading-tight: 1.2;
   --db-leading-ui: 1.4;
   --db-leading-body: 1.5;
+  --db-radius-small: 4px;
   --db-radius-control: 8px;
   --db-radius-card: 12px;
   --db-radius-overlay: 12px;

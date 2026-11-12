@@ -77,9 +77,14 @@ test("la escala usa unidades explícitas y las fuentes tienen respaldo", () => {
   assert.match(escala["font-sans"], /^var\(--font-geist-sans, [^)]+\), .*sans-serif$/);
   assert.match(escala["font-mono"], /^var\(--font-geist-mono, [^)]+\), .*monospace$/);
   // La escala de texto crece de menor a mayor, y el cuerpo es 14 px (decisión 2026-11-12).
-  const tamanos = ["caption", "meta", "body", "emphasis", "heading", "title", "display"].map((n) => parseInt(escala[`text-${n}`]));
+  const tamanos = ["overline", "caption", "meta", "body", "emphasis", "heading", "title", "display"].map((n) => parseInt(escala[`text-${n}`]));
   assert.deepEqual([...tamanos].sort((a, b) => a - b), tamanos);
   assert.equal(escala["text-body"], "14px");
+  // Los campos de formulario en el teléfono usan --db-text-emphasis: por debajo de
+  // 16 px, Safari de iOS hace zoom al tocarlos.
+  assert.ok(parseInt(escala["text-emphasis"]) >= 16, "text-emphasis no puede bajar de 16 px");
+  const radios = ["small", "control", "card"].map((n) => parseInt(escala[`radius-${n}`]));
+  assert.deepEqual([...radios].sort((a, b) => a - b), radios);
 });
 
 test("cada valor es un color hexadecimal de 6 dígitos o un rgba()", () => {
