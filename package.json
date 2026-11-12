@@ -1,0 +1,23 @@
+{
+  "name": "@daybook/design",
+  "version": "0.1.0",
+  "description": "Tokens de diseño compartidos de la familia Daybook: Parte Diario, Travel y Ticket.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./src/tokens.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "node scripts/build.mjs --check && node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

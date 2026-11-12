@@ -1,0 +1,112 @@
+/* @daybook/design 0.1.0 — generado desde src/tokens.json. No editar a mano. */
+
+:root {
+  --db-bg: #f7f8f9;
+  --db-surface: #ffffff;
+  --db-surface-raised: #ffffff;
+  --db-surface-subtle: #f7f8f9;
+  --db-surface-muted: #eef0f1;
+  --db-surface-hover: #e9ebec;
+  --db-text: #11120f;
+  --db-text-soft: #34352d;
+  --db-text-muted: #69675f;
+  --db-border: #d9dbdc;
+  --db-border-subtle: #e9ebec;
+  --db-border-strong: #8c8f88;
+  --db-action: #11120f;
+  --db-action-hover: #292a25;
+  --db-action-text: #f3efe4;
+  --db-focus: #a46d09;
+  --db-brand: #805a0e;
+  --db-brand-soft: #faf3e3;
+  --db-success: #187a55;
+  --db-success-soft: #e6f3ea;
+  --db-warning: #8a6608;
+  --db-warning-soft: #f7efd6;
+  --db-danger: #b3261e;
+  --db-danger-soft: #f9e9e6;
+  --db-info: #315ca8;
+  --db-info-soft: #e7edf7;
+  --db-rail-bg: #11120f;
+  --db-rail-text: #f3efe4;
+  --db-rail-text-muted: #c2bdae;
+  --db-rail-border: #45443b;
+  --db-rail-hover: rgba(255, 255, 255, 0.06);
+  --db-rail-active: rgba(243, 239, 228, 0.14);
+  --db-rail-focus: #efc56e;
+}
+
+:root[data-theme="dark"],
+:root[data-color-scheme="dark"] {
+  --db-bg: #000000;
+  --db-surface: #0a0a0a;
+  --db-surface-raised: #111111;
+  --db-surface-subtle: #171717;
+  --db-surface-muted: #222222;
+  --db-surface-hover: #222222;
+  --db-text: #ededed;
+  --db-text-soft: #c7c7c7;
+  --db-text-muted: #a1a1a1;
+  --db-border: #303030;
+  --db-border-subtle: #303030;
+  --db-border-strong: #6b6b6b;
+  --db-action: #ededed;
+  --db-action-hover: #ffffff;
+  --db-action-text: #000000;
+  --db-focus: #edc879;
+  --db-brand: #edc879;
+  --db-brand-soft: #292315;
+  --db-success: #5bc99a;
+  --db-success-soft: #153c29;
+  --db-warning: #e6c363;
+  --db-warning-soft: #332812;
+  --db-danger: #ee7b83;
+  --db-danger-soft: #361d1b;
+  --db-info: #96b8ff;
+  --db-info-soft: #1c2c49;
+  --db-rail-bg: #000000;
+  --db-rail-text: #ededed;
+  --db-rail-text-muted: #a1a1a1;
+  --db-rail-border: #303030;
+  --db-rail-hover: rgba(255, 255, 255, 0.06);
+  --db-rail-active: rgba(255, 255, 255, 0.10);
+  --db-rail-focus: #edc879;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-color-scheme="light"]) {
+    --db-bg: #000000;
+    --db-surface: #0a0a0a;
+    --db-surface-raised: #111111;
+    --db-surface-subtle: #171717;
+    --db-surface-muted: #222222;
+    --db-surface-hover: #222222;
+    --db-text: #ededed;
+    --db-text-soft: #c7c7c7;
+    --db-text-muted: #a1a1a1;
+    --db-border: #303030;
+    --db-border-subtle: #303030;
+    --db-border-strong: #6b6b6b;
+    --db-action: #ededed;
+    --db-action-hover: #ffffff;
+    --db-action-text: #000000;
+    --db-focus: #edc879;
+    --db-brand: #edc879;
+    --db-brand-soft: #292315;
+    --db-success: #5bc99a;
+    --db-success-soft: #153c29;
+    --db-warning: #e6c363;
+    --db-warning-soft: #332812;
+    --db-danger: #ee7b83;
+    --db-danger-soft: #361d1b;
+    --db-info: #96b8ff;
+    --db-info-soft: #1c2c49;
+    --db-rail-bg: #000000;
+    --db-rail-text: #ededed;
+    --db-rail-text-muted: #a1a1a1;
+    --db-rail-border: #303030;
+    --db-rail-hover: rgba(255, 255, 255, 0.06);
+    --db-rail-active: rgba(255, 255, 255, 0.10);
+    --db-rail-focus: #edc879;
+  }
+}
