@@ -3,7 +3,7 @@
 Fuente única del diseño de la familia Daybook: **Parte Diario**, **Daybook Travel** y **Daybook Ticket**.
 Un cambio aquí llega a las tres apps subiendo la versión en cada una; nadie vuelve a copiar colores a mano.
 
-## Qué trae (v0.3)
+## Qué trae (v0.4)
 
 - `src/tokens.json` — los colores (tema claro y oscuro) y la escala (fuentes, tamaños, radios, espacios), con un solo nombre por concepto.
 - `dist/tokens.css` — todo eso como variables `--db-*`, generado. **No se edita a mano.**
@@ -28,6 +28,10 @@ Escala (igual en los dos temas):
 | Radios | `--db-radius-small` 4, `-control` 8, `-card` 12, `-overlay` 12, `-pill` |
 | Espacios | `--db-space-1` 4 … `--db-space-8` 64 |
 | Movimiento | `--db-duration-fast`, `--db-duration-enter`, `--db-ease-out` |
+| Botón | `--db-button-height` 44, `-padding-x` 16, `-font-size` 14, `-weight` semibold, `-radius` 8 |
+| Campo | `--db-field-height` 44, `-padding-x` 12, `-font-size` 14, `-radius` 8 (borde: `--db-border-strong`) |
+| Pastilla | `--db-badge-height` 24, `-padding-x` 8, `-font-size` 12, `-weight` semibold, `-radius` píldora, `-dot` 6 |
+| Encabezado de tabla | `--db-table-head-font-size` 12, `-weight` semibold, `-tracking` .08em, `-transform` uppercase (sin fondo) |
 
 ### Decisiones que fija
 

@@ -87,6 +87,22 @@ test("la escala usa unidades explícitas y las fuentes tienen respaldo", () => {
   assert.deepEqual([...radios].sort((a, b) => a - b), radios);
 });
 
+test("los componentes comunes usan la escala y respetan el objetivo táctil", () => {
+  const { escala } = tokens;
+  // 44 px es el objetivo táctil mínimo (WCAG 2.5.5, guías de iOS y Android).
+  for (const nombre of ["button-height", "field-height"]) assert.ok(parseInt(escala[nombre]) >= 44, `${nombre} = ${escala[nombre]}`);
+  // Las decisiones del 2026-11-12: botón 14 px semibold, pastilla 12 px píldora,
+  // encabezado de tabla en mayúsculas.
+  assert.equal(escala["button-font-size"], "var(--db-text-body)");
+  assert.equal(escala["badge-font-size"], "var(--db-text-caption)");
+  assert.equal(escala["badge-radius"], "var(--db-radius-pill)");
+  assert.equal(escala["table-head-transform"], "uppercase");
+  // Toda referencia var(--db-…) dentro de la escala apunta a algo que existe.
+  for (const [nombre, valor] of Object.entries(escala))
+    for (const [, ref] of valor.matchAll(/var\(--db-([\w-]+)\)/g))
+      assert.ok(ref in escala || ref in tokens.light, `${nombre} apunta a --db-${ref}, que no existe`);
+});
+
 test("cada valor es un color hexadecimal de 6 dígitos o un rgba()", () => {
   for (const tema of ["light", "dark"])
     for (const [nombre, valor] of Object.entries(tokens[tema]))

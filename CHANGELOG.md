@@ -1,5 +1,16 @@
 # Cambios
 
+## 0.4.0 — 2026-11-12
+
+- Medidas de los componentes comunes, decididas el 2026-11-12:
+  - Botón: 44 px de alto, 16 px de relleno lateral, 14 px semibold, radio 8.
+  - Campo: 44 px de alto, 12 px de relleno lateral, 14 px, radio 8; el borde es
+    `--db-border-strong` (3:1).
+  - Pastilla de estado: 24 px de alto, 8 px de relleno, 12 px semibold, píldora,
+    punto de 6 px.
+  - Encabezado de tabla: 12 px semibold, mayúsculas, espaciado .08em, sin fondo.
+- Prueba: botón y campo no bajan de 44 px y toda referencia interna existe.
+
 ## 0.3.0 — 2026-11-12
 
 - `--db-text-overline` (11 px) para etiquetas en mayúsculas con espaciado, el
