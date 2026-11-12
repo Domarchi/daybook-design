@@ -1,6 +1,7 @@
 // Genera dist/tokens.css a partir de src/tokens.json.
 //
 // El CSS sale con tres bloques:
+//   0. :root                → la escala (fuentes, tamaños, radios, espacios), igual en los dos temas.
 //   1. :root                → tema claro (lo que se ve si nada dice lo contrario).
 //   2. tema oscuro elegido  → :root[data-theme="dark"] y :root[data-color-scheme="dark"].
 //      Ticket usa data-color-scheme y las otras dos data-theme; se aceptan los dos
@@ -26,6 +27,14 @@ const declaraciones = (paleta, sangria) =>
 
 export function generar() {
   return `/* @daybook/design ${version} — generado desde src/tokens.json. No editar a mano. */
+
+/* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
+   en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
+   next/font (Geist y Geist Mono); la app debe ponerlas en <html>, no en <body>,
+   para que :root las vea. Si faltan, caen en la fuente del sistema. */
+:root {
+${declaraciones(tokens.escala, "  ")}
+}
 
 :root {
 ${declaraciones(tokens.light, "  ")}

@@ -1,4 +1,42 @@
-/* @daybook/design 0.1.0 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.2.0 — generado desde src/tokens.json. No editar a mano. */
+
+/* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
+   en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
+   next/font (Geist y Geist Mono); la app debe ponerlas en <html>, no en <body>,
+   para que :root las vea. Si faltan, caen en la fuente del sistema. */
+:root {
+  --db-font-sans: var(--font-geist-sans, ui-sans-serif), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --db-font-mono: var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --db-text-caption: 12px;
+  --db-text-meta: 13px;
+  --db-text-body: 14px;
+  --db-text-emphasis: 16px;
+  --db-text-heading: 18px;
+  --db-text-title: 22px;
+  --db-text-display: 28px;
+  --db-weight-regular: 400;
+  --db-weight-medium: 500;
+  --db-weight-semibold: 600;
+  --db-weight-bold: 700;
+  --db-leading-tight: 1.2;
+  --db-leading-ui: 1.4;
+  --db-leading-body: 1.5;
+  --db-radius-control: 8px;
+  --db-radius-card: 12px;
+  --db-radius-overlay: 12px;
+  --db-radius-pill: 999px;
+  --db-space-1: 4px;
+  --db-space-2: 8px;
+  --db-space-3: 12px;
+  --db-space-4: 16px;
+  --db-space-5: 24px;
+  --db-space-6: 32px;
+  --db-space-7: 48px;
+  --db-space-8: 64px;
+  --db-duration-fast: 120ms;
+  --db-duration-enter: 220ms;
+  --db-ease-out: cubic-bezier(.16, 1, .3, 1);
+}
 
 :root {
   --db-bg: #f7f8f9;

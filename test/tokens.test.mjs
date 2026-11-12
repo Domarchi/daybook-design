@@ -65,6 +65,23 @@ test("claro y oscuro definen exactamente los mismos nombres", () => {
   assert.deepEqual(Object.keys(tokens.light).sort(), Object.keys(tokens.dark).sort());
 });
 
+test("la escala usa unidades explícitas y las fuentes tienen respaldo", () => {
+  const { escala } = tokens;
+  for (const [nombre, valor] of Object.entries(escala)) {
+    if (/^(text|radius|space)-/.test(nombre)) assert.match(valor, /^\d+px$/, `${nombre} = ${valor}`);
+    if (nombre.startsWith("weight-")) assert.match(valor, /^[1-9]00$/, `${nombre} = ${valor}`);
+    if (nombre.startsWith("leading-")) assert.match(valor, /^\d(\.\d+)?$/, `${nombre} = ${valor}`);
+    if (nombre.startsWith("duration-")) assert.match(valor, /^\d+ms$/, `${nombre} = ${valor}`);
+  }
+  // Sin respaldo, una app que no cargó Geist quedaría con la fuente con serifa del navegador.
+  assert.match(escala["font-sans"], /^var\(--font-geist-sans, [^)]+\), .*sans-serif$/);
+  assert.match(escala["font-mono"], /^var\(--font-geist-mono, [^)]+\), .*monospace$/);
+  // La escala de texto crece de menor a mayor, y el cuerpo es 14 px (decisión 2026-11-12).
+  const tamanos = ["caption", "meta", "body", "emphasis", "heading", "title", "display"].map((n) => parseInt(escala[`text-${n}`]));
+  assert.deepEqual([...tamanos].sort((a, b) => a - b), tamanos);
+  assert.equal(escala["text-body"], "14px");
+});
+
 test("cada valor es un color hexadecimal de 6 dígitos o un rgba()", () => {
   for (const tema of ["light", "dark"])
     for (const [nombre, valor] of Object.entries(tokens[tema]))
