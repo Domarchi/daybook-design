@@ -3,11 +3,12 @@
 Fuente única del diseño de la familia Daybook: **Parte Diario**, **Daybook Travel** y **Daybook Ticket**.
 Un cambio aquí llega a las tres apps subiendo la versión en cada una; nadie vuelve a copiar colores a mano.
 
-## Qué trae (v0.7)
+## Qué trae (v0.8)
 
 - `src/tokens.json` — los colores (tema claro y oscuro) y la escala (fuentes, tamaños, radios, espacios), con un solo nombre por concepto.
 - `dist/tokens.css` — todo eso como variables `--db-*`, generado. **No se edita a mano.**
 - `src/estados.css` — lo único que no es un token: el **esqueleto de carga** (`.db-skeleton`, `.db-skeleton-row`, `.db-skeleton-card`) y el **vacío común** (`.db-empty` con `__icon`, `__title`, `__text`, `__action`). Escrito a mano, usa solo variables del paquete; las apps lo importan en vez de copiarlo. Ver el comentario de cabecera del archivo para el marcado.
+- `dist/marca.css` — el **sello de la familia**: `.db-lockup` (símbolo 48 px + DAYBOOK + producto en dorado, todo a la misma medida en las tres apps), `.db-lockup-descriptor`, `.db-mark` / `.db-mark--large` y `.db-brand-block` (bloque de marca del riel). Generado desde `src/marca.css` con el símbolo de `src/marca/` dentro; el marcado está en su cabecera.
 
 | Grupo | Variables |
 |---|---|
@@ -50,6 +51,7 @@ Escala (igual en los dos temas):
 - **Avisos abajo al centro del contenido**, se van solos a los 4 s (10 s si ofrecen «Deshacer»); un **error del servidor no se va solo**; el error de un formulario va junto al campo, dentro del diálogo.
 - **Acciones delicadas**: si se puede revertir, se hace y el aviso ofrece «Deshacer»; si no, diálogo propio con botón rojo que nombra la acción. Nunca `window.confirm`.
 - **Carga con esqueletos** con la forma del contenido («…» solo en botones) y **un solo vacío**: ícono, título, una frase y una acción.
+- **Un solo logo**: mismo símbolo, misma medida y el nombre del producto legible; el cliente va aparte, como descriptor.
 - **Geist** como fuente de las tres apps y **14 px** como tamaño del texto de trabajo.
 
 ### Cómo elige el tema
@@ -73,6 +75,7 @@ Y en `app/layout.tsx`, **antes** de los CSS propios:
 ```ts
 import "@daybook/design/tokens.css";
 import "@daybook/design/estados.css"; // esqueleto y vacío (desde 0.7)
+import "@daybook/design/marca.css";   // el logo de la familia (desde 0.8)
 ```
 
 Para Geist, cargar las fuentes con `next/font` y poner sus variables en `<html>` (no en

@@ -1,0 +1,159 @@
+/* @daybook/design 0.8.0 — generado desde src/marca.css y src/marca/*.svg. No editar a mano. */
+/* @daybook/design — el sello de la familia: símbolo + DAYBOOK + producto.
+ *
+ * Las tres apps dibujan su logo con estas clases, así que miden lo mismo y se
+ * leen como herramientas de una misma batería. El símbolo viaja dentro del CSS
+ * (dist/marca.css lo trae como data URI, generado desde src/marca/*.svg): no hay
+ * archivo que copiar a public/ ni ruta que pueda quedar desfasada.
+ *
+ *   import "@daybook/design/tokens.css";
+ *   import "@daybook/design/marca.css";
+ *
+ * ── Logo completo ────────────────────────────────────────────────────────────
+ * DAYBOOK y el nombre del producto son texto (Geist), no parte de una imagen:
+ * se leen a cualquier tamaño y no dependen de la fuente instalada. El nombre
+ * accesible lo da aria-label; lo de adentro es decorado.
+ *
+ *   <span class="db-lockup" role="img" aria-label="Daybook Parte Diario">
+ *     <span class="db-mark" aria-hidden="true"></span>
+ *     <span class="db-lockup__type" aria-hidden="true">
+ *       <span class="db-lockup__name">Daybook</span>
+ *       <span class="db-lockup__product">Parte Diario</span>
+ *     </span>
+ *   </span>
+ *   <span class="db-lockup-descriptor">Consorcio C17</span>
+ *
+ * El descriptor (cliente, obra o lugar) va fuera del logo y de su nombre
+ * accesible. Sobre el riel —oscuro en los dos temas— se agrega `db-on-dark` al
+ * logo o a un contenedor. El bloque de marca del riel es `.db-brand-block`.
+ *
+ * ── Solo el símbolo ──────────────────────────────────────────────────────────
+ *   <span class="db-mark db-mark--large" role="img" aria-label="Daybook"></span>
+ * 48 px por omisión; `--large` (56 px) en la tarjeta de entrada.
+ */
+
+/* Los dos dibujos, una sola vez cada uno. */
+:root {
+  --db-brand-mark-on-light: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0iZGF5Ym9va01hcmtUaXRsZSI+CiAgPHRpdGxlIGlkPSJkYXlib29rTWFya1RpdGxlIj5EYXlib29rPC90aXRsZT4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGF5Ym9va0dvbGQiIHgxPSIzOSIgeTE9IjMzIiB4Mj0iNTkiIHkyPSI2MyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjRjZEMTZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC41IiBzdG9wLWNvbG9yPSIjRDk5QjI3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlENjUxNCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGF5Ym9va0luayIgeDE9IjIxIiB5MT0iMTMiIHgyPSI4MCIgeTI9Ijg0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMxMTEyMEYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU4IiBzdG9wLWNvbG9yPSIjMkIyRDI4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVDNUU1NyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9ImdvbGRHbG93IiB4PSIzMCIgeT0iMjUiIHdpZHRoPSIzOCIgaGVpZ2h0PSI0NiIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMCIgc3RkRGV2aWF0aW9uPSIzLjUiIGZsb29kLWNvbG9yPSIjRDk5QjI3IiBmbG9vZC1vcGFjaXR5PSIwLjQ1Ii8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPHBhdGggZD0iTTIwIDE4SDQ3QzY2LjggMTggODEgMzAuMSA4MSA0OEM4MSA2NS45IDY2LjggNzggNDcgNzhIMjBWMThaIiBmaWxsPSJ1cmwoI2RheWJvb2tJbmspIi8+CiAgPHBhdGggZD0iTTIwIDI3SDQzLjVDNTEuNSAyNyA1Ny4yIDMwLjcgNjAuOSAzNi43TDYzLjQgNDAuN0M2NiA0NC44IDY5LjcgNDYuOSA3NC43IDQ2LjlIODFWNTIuMUg3NC43QzY5LjcgNTIuMSA2NiA1NC4yIDYzLjQgNTguM0w2MC45IDYyLjNDNTcuMiA2OC4zIDUxLjUgNzIgNDMuNSA3MkgyMFY2Mi42SDQyQzQ3LjIgNjIuNiA1MC4yIDYwLjEgNTIuNSA1Ni41TDU2LjEgNTAuN0M1Ni44IDQ5LjYgNTYuOCA0OC40IDU2LjEgNDcuM0w1Mi41IDQxLjVDNTAuMiAzNy45IDQ3LjIgMzUuNCA0MiAzNS40SDIwVjI3WiIgZmlsbD0iI0YzRUZFNCIvPgogIDxwYXRoIGQ9Ik0yMCA0Mi43SDQxLjhDNDcuOCA0Mi43IDUyLjMgNDUuMSA1NS42IDQ5LjFDNTIuMyA1My4xIDQ3LjggNTUuNSA0MS44IDU1LjVIMjBWNDIuN1oiIGZpbGw9InVybCgjZGF5Ym9va0luaykiLz4KICA8cGF0aCBkPSJNNDUuOSA0OUw1Mi41IDM3LjJMNTkuMSA0OUw1Mi41IDYwLjhMNDUuOSA0OVoiIGZpbGw9InVybCgjZGF5Ym9va0dvbGQpIiBmaWx0ZXI9InVybCgjZ29sZEdsb3cpIi8+CiAgPHBhdGggZD0iTTE1IDQ4LjFIMzQuN0MzOC4yIDQ4LjEgNDEuMSA0OC42IDQzLjQgNDkuNUgxNVY0OC4xWiIgZmlsbD0idXJsKCNkYXlib29rSW5rKSIvPgogIDxwYXRoIGQ9Ik0xMCA1Mi4ySDQ0LjdDNDcuMiA1Mi4yIDQ5LjMgNTEuOCA1MS4yIDUxLjFDNDguNCA1My43IDQ0LjkgNTUgNDAuNSA1NUgxMFY1Mi4yWiIgZmlsbD0idXJsKCNkYXlib29rSW5rKSIvPgogIDxwYXRoIGQ9Ik0xNi41IDYyLjZINDguMkM0NC41IDY1LjQgNDAgNjYuOSAzNC42IDY2LjlIMTIuM0wxNi41IDYyLjZaIiBmaWxsPSJ1cmwoI2RheWJvb2tJbmspIi8+CiAgPHBhdGggZD0iTTIwIDY5LjhINDMuM0MzOC44IDcyIDMzLjYgNzMuMSAyNy43IDczLjFIMTAuOEwyMCA2OS44WiIgZmlsbD0idXJsKCNkYXlib29rSW5rKSIvPgogIDxwYXRoIGQ9Ik0yMCAxOEg0N0M2Ni44IDE4IDgxIDMwLjEgODEgNDhDODEgNjUuOSA2Ni44IDc4IDQ3IDc4SDIwIiBzdHJva2U9IiMxMTEyMEYiIHN0cm9rZS1vcGFjaXR5PSIwLjEyIiBzdHJva2Utd2lkdGg9IjEuMiIvPgo8L3N2Zz4K");
+  --db-brand-mark-on-dark: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0iZGF5Ym9va01hcmtUaXRsZSI+CiAgPHRpdGxlIGlkPSJkYXlib29rTWFya1RpdGxlIj5EYXlib29rPC90aXRsZT4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGF5Ym9va0dvbGQiIHgxPSIzOSIgeTE9IjMzIiB4Mj0iNTkiIHkyPSI2MyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjRjZEMTZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC41IiBzdG9wLWNvbG9yPSIjRDk5QjI3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzlENjUxNCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZGF5Ym9va0luayIgeDE9IjIxIiB5MT0iMTMiIHgyPSI4MCIgeTI9Ijg0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNGOUY3RjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU4IiBzdG9wLWNvbG9yPSIjRTVFMEQ0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0I5QjRBQSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9ImdvbGRHbG93IiB4PSIzMCIgeT0iMjUiIHdpZHRoPSIzOCIgaGVpZ2h0PSI0NiIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMCIgc3RkRGV2aWF0aW9uPSIzLjUiIGZsb29kLWNvbG9yPSIjRDk5QjI3IiBmbG9vZC1vcGFjaXR5PSIwLjQ1Ii8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPHBhdGggZD0iTTIwIDE4SDQ3QzY2LjggMTggODEgMzAuMSA4MSA0OEM4MSA2NS45IDY2LjggNzggNDcgNzhIMjBWMThaIiBmaWxsPSJ1cmwoI2RheWJvb2tJbmspIi8+CiAgPHBhdGggZD0iTTIwIDI3SDQzLjVDNTEuNSAyNyA1Ny4yIDMwLjcgNjAuOSAzNi43TDYzLjQgNDAuN0M2NiA0NC44IDY5LjcgNDYuOSA3NC43IDQ2LjlIODFWNTIuMUg3NC43QzY5LjcgNTIuMSA2NiA1NC4yIDYzLjQgNTguM0w2MC45IDYyLjNDNTcuMiA2OC4zIDUxLjUgNzIgNDMuNSA3MkgyMFY2Mi42SDQyQzQ3LjIgNjIuNiA1MC4yIDYwLjEgNTIuNSA1Ni41TDU2LjEgNTAuN0M1Ni44IDQ5LjYgNTYuOCA0OC40IDU2LjEgNDcuM0w1Mi41IDQxLjVDNTAuMiAzNy45IDQ3LjIgMzUuNCA0MiAzNS40SDIwVjI3WiIgZmlsbD0iIzA1MDYwOSIvPgogIDxwYXRoIGQ9Ik0yMCA0Mi43SDQxLjhDNDcuOCA0Mi43IDUyLjMgNDUuMSA1NS42IDQ5LjFDNTIuMyA1My4xIDQ3LjggNTUuNSA0MS44IDU1LjVIMjBWNDIuN1oiIGZpbGw9InVybCgjZGF5Ym9va0luaykiLz4KICA8cGF0aCBkPSJNNDUuOSA0OUw1Mi41IDM3LjJMNTkuMSA0OUw1Mi41IDYwLjhMNDUuOSA0OVoiIGZpbGw9InVybCgjZGF5Ym9va0dvbGQpIiBmaWx0ZXI9InVybCgjZ29sZEdsb3cpIi8+CiAgPHBhdGggZD0iTTE1IDQ4LjFIMzQuN0MzOC4yIDQ4LjEgNDEuMSA0OC42IDQzLjQgNDkuNUgxNVY0OC4xWiIgZmlsbD0idXJsKCNkYXlib29rSW5rKSIvPgogIDxwYXRoIGQ9Ik0xMCA1Mi4ySDQ0LjdDNDcuMiA1Mi4yIDQ5LjMgNTEuOCA1MS4yIDUxLjFDNDguNCA1My43IDQ0LjkgNTUgNDAuNSA1NUgxMFY1Mi4yWiIgZmlsbD0idXJsKCNkYXlib29rSW5rKSIvPgogIDxwYXRoIGQ9Ik0xNi41IDYyLjZINDguMkM0NC41IDY1LjQgNDAgNjYuOSAzNC42IDY2LjlIMTIuM0wxNi41IDYyLjZaIiBmaWxsPSJ1cmwoI2RheWJvb2tJbmspIi8+CiAgPHBhdGggZD0iTTIwIDY5LjhINDMuM0MzOC44IDcyIDMzLjYgNzMuMSAyNy43IDczLjFIMTAuOEwyMCA2OS44WiIgZmlsbD0idXJsKCNkYXlib29rSW5rKSIvPgogIDxwYXRoIGQ9Ik0yMCAxOEg0N0M2Ni44IDE4IDgxIDMwLjEgODEgNDhDODEgNjUuOSA2Ni44IDc4IDQ3IDc4SDIwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS1vcGFjaXR5PSIwLjEyIiBzdHJva2Utd2lkdGg9IjEuMiIvPgo8L3N2Zz4K");
+}
+
+.db-lockup {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--db-brand-gap);
+  min-width: 0;
+  max-width: 100%;
+  line-height: 1;
+  vertical-align: middle;
+  color: var(--db-text);
+}
+
+/* El dibujo del símbolo deja aire a la izquierda (10 de 96); se corre para que
+   su borde quede alineado con el texto que va debajo (descriptor, navegación). */
+.db-lockup > .db-mark {
+  margin-inline-start: calc(var(--db-brand-mark) * -10 / 96);
+}
+
+.db-mark {
+  display: inline-block;
+  flex: none;
+  width: var(--db-brand-mark);
+  height: var(--db-brand-mark);
+  background: var(--db-brand-mark-on-light) center / contain no-repeat;
+  vertical-align: middle;
+}
+
+.db-mark--large {
+  --db-brand-mark: var(--db-brand-mark-large);
+}
+
+.db-lockup__type {
+  display: flex;
+  flex-direction: column;
+  gap: var(--db-brand-type-gap);
+  min-width: 0;
+}
+
+.db-lockup__name,
+.db-lockup__product {
+  display: block;
+  overflow: hidden;
+  font-family: var(--db-font-sans);
+  line-height: 1;
+  text-overflow: clip;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.db-lockup__name {
+  color: inherit;
+  font-size: var(--db-brand-name-size);
+  font-weight: var(--db-weight-semibold);
+  letter-spacing: var(--db-brand-name-tracking);
+}
+
+.db-lockup__product {
+  color: var(--db-brand);
+  font-size: var(--db-brand-product-size);
+  font-weight: var(--db-weight-bold);
+  letter-spacing: var(--db-brand-product-tracking);
+}
+
+.db-lockup-descriptor {
+  display: block;
+  color: var(--db-text-muted);
+  font-family: var(--db-font-sans);
+  font-size: var(--db-text-overline);
+  font-weight: var(--db-weight-semibold);
+  line-height: var(--db-leading-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Bloque de marca del riel: mismo alto, aire y línea inferior en las tres apps. */
+.db-brand-block {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--db-space-2);
+  min-height: var(--db-brand-block-height);
+  padding: var(--db-space-4) var(--db-brand-block-padding-x);
+  border-bottom: 1px solid var(--db-rail-border);
+}
+
+/* Sobre fondo oscuro en los dos temas (el riel). */
+.db-on-dark .db-lockup,
+.db-lockup.db-on-dark {
+  color: var(--db-rail-text);
+}
+
+.db-on-dark .db-lockup__product,
+.db-lockup.db-on-dark .db-lockup__product {
+  color: var(--db-rail-indicator);
+}
+
+.db-on-dark .db-lockup-descriptor,
+.db-lockup-descriptor.db-on-dark {
+  color: var(--db-rail-text-muted);
+}
+
+.db-on-dark .db-mark,
+.db-mark.db-on-dark {
+  background-image: var(--db-brand-mark-on-dark);
+}
+
+/* Tema oscuro: elegido a mano o heredado del sistema (mismas reglas que tokens.css). */
+:root[data-theme="dark"] .db-mark,
+:root[data-color-scheme="dark"] .db-mark {
+  background-image: var(--db-brand-mark-on-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-color-scheme="light"]) .db-mark {
+    background-image: var(--db-brand-mark-on-dark);
+  }
+}

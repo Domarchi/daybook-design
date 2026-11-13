@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
-import { generar } from "../scripts/build.mjs";
+import { generar, generarMarca } from "../scripts/build.mjs";
 
 const raiz = join(import.meta.dirname, "..");
 const tokens = JSON.parse(readFileSync(join(raiz, "src/tokens.json"), "utf8"));
@@ -164,4 +164,45 @@ test("estados.css (esqueleto y vacío) solo usa variables que existen", () => {
   }
   const paquete = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
   assert.equal(paquete.exports["./estados.css"], "./src/estados.css");
+});
+
+test("el sello de la familia: mismo símbolo, mismas medidas y texto legible en las tres apps", () => {
+  const { escala } = tokens;
+  assert.equal(escala["brand-mark"], "48px");
+  assert.equal(escala["brand-mark-large"], "56px");
+  assert.equal(escala["brand-name-size"], escala["text-emphasis"], "DAYBOOK a 16 px");
+  assert.equal(escala["brand-product-size"], escala["text-overline"], "el producto a 11 px, el mínimo de la escala");
+  // El producto va en dorado: tiene que leerse sobre el fondo de la entrada y sobre el riel.
+  for (const tema of ["light", "dark"]) {
+    const t = tokens[tema];
+    for (const [fondo, color, que] of [
+      ["bg", "brand", "producto sobre el fondo"],
+      ["surface", "brand", "producto sobre una tarjeta"],
+      ["rail-bg", "rail-indicator", "producto sobre el riel"],
+      ["rail-bg", "rail-text", "DAYBOOK sobre el riel"],
+      ["rail-bg", "rail-text-muted", "descriptor sobre el riel"],
+    ]) {
+      const r = contraste(t[color], t[fondo]);
+      assert.ok(r >= 4.5, `${tema}: ${que} ${r.toFixed(2)}:1`);
+    }
+  }
+});
+
+test("dist/marca.css está generado y trae el símbolo canónico de src/marca/", () => {
+  const css = generarMarca();
+  assert.equal(readFileSync(join(raiz, "dist/marca.css"), "utf8"), css);
+  assert.doesNotMatch(css, /__MARCA_/);
+  for (const archivo of ["daybook-mark-on-light.svg", "daybook-mark-on-dark.svg"]) {
+    const b64 = readFileSync(join(raiz, "src/marca", archivo)).toString("base64");
+    assert.equal(css.split(b64).length - 1, 1, `${archivo} va una sola vez`);
+  }
+  const plantilla = readFileSync(join(raiz, "src/marca.css"), "utf8");
+  const nombres = new Set([...Object.keys(tokens.escala), ...Object.keys(tokens.light), "brand-mark-on-light", "brand-mark-on-dark"]);
+  const faltan = [...plantilla.matchAll(/var\(--db-([a-z0-9-]+)/g)].map((m) => m[1]).filter((n) => !nombres.has(n));
+  assert.deepEqual(faltan, []);
+  // El oscuro sigue las mismas reglas que tokens.css: elegido a mano o heredado del sistema.
+  assert.match(plantilla, /:root\[data-theme="dark"\] \.db-mark/);
+  assert.match(plantilla, /:root:not\(\[data-theme="light"\]\):not\(\[data-color-scheme="light"\]\) \.db-mark/);
+  const paquete = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
+  assert.equal(paquete.exports["./marca.css"], "./dist/marca.css");
 });

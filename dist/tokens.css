@@ -1,4 +1,4 @@
-/* @daybook/design 0.7.0 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.8.0 — generado desde src/tokens.json. No editar a mano. */
 
 /* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
    en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
@@ -80,6 +80,16 @@
   --db-empty-icon: 44px;
   --db-empty-padding-y: 40px;
   --db-empty-text-max: 420px;
+  --db-brand-mark: 48px;
+  --db-brand-mark-large: 56px;
+  --db-brand-gap: 8px;
+  --db-brand-type-gap: 6px;
+  --db-brand-name-size: 16px;
+  --db-brand-name-tracking: 0.24em;
+  --db-brand-product-size: 11px;
+  --db-brand-product-tracking: 0.16em;
+  --db-brand-block-height: 108px;
+  --db-brand-block-padding-x: 22px;
 }
 
 :root {

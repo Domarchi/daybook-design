@@ -1,4 +1,5 @@
-// Genera dist/tokens.css a partir de src/tokens.json.
+// Genera dist/tokens.css a partir de src/tokens.json y dist/marca.css a partir de
+// src/marca.css (con el símbolo de src/marca/ dentro).
 //
 // El CSS sale con tres bloques:
 //   0. :root                → la escala (fuentes, tamaños, radios, espacios), igual en los dos temas.
@@ -53,22 +54,42 @@ ${declaraciones(tokens.dark, "    ")}
 `;
 }
 
-const destino = join(raiz, "dist/tokens.css");
+// dist/marca.css: src/marca.css con los dos dibujos del símbolo dentro, como
+// data URI. Así el símbolo llega con el CSS y ninguna app copia archivos a public/.
+const dataUri = (archivo) =>
+  `data:image/svg+xml;base64,${readFileSync(join(raiz, "src/marca", archivo)).toString("base64")}`;
+
+export function generarMarca() {
+  const plantilla = readFileSync(join(raiz, "src/marca.css"), "utf8");
+  return `/* @daybook/design ${version} — generado desde src/marca.css y src/marca/*.svg. No editar a mano. */\n${plantilla
+    .replaceAll("__MARCA_CLARA__", dataUri("daybook-mark-on-light.svg"))
+    .replaceAll("__MARCA_OSCURA__", dataUri("daybook-mark-on-dark.svg"))}`;
+}
+
+const salidas = [
+  ["dist/tokens.css", generar],
+  ["dist/marca.css", generarMarca],
+];
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const css = generar();
-  if (process.argv.includes("--check")) {
-    let actual = "";
-    try {
-      actual = readFileSync(destino, "utf8");
-    } catch {}
-    if (actual !== css) {
-      console.error("dist/tokens.css no está al día: corre `npm run build`.");
-      process.exit(1);
+  let desfasado = false;
+  for (const [ruta, generador] of salidas) {
+    const destino = join(raiz, ruta);
+    const css = generador();
+    if (process.argv.includes("--check")) {
+      let actual = "";
+      try {
+        actual = readFileSync(destino, "utf8");
+      } catch {}
+      if (actual !== css) {
+        console.error(`${ruta} no está al día: corre \`npm run build\`.`);
+        desfasado = true;
+      } else console.log(`${ruta} al día.`);
+    } else {
+      mkdirSync(dirname(destino), { recursive: true });
+      writeFileSync(destino, css);
+      console.log(`${ruta} escrito (${version}).`);
     }
-    console.log("dist/tokens.css al día.");
-  } else {
-    mkdirSync(dirname(destino), { recursive: true });
-    writeFileSync(destino, css);
-    console.log(`dist/tokens.css escrito (${version}).`);
   }
+  if (desfasado) process.exit(1);
 }

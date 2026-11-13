@@ -1,5 +1,27 @@
 # Cambios
 
+## 0.8.0 — 2026-11-13
+
+- `dist/marca.css` (export `@daybook/design/marca.css`): el sello de la familia.
+  Las tres apps dibujan el logo con las mismas clases y medidas, para que se
+  lean como una batería de herramientas:
+  - `.db-lockup`: símbolo de 48 px + «DAYBOOK» (16 px, semibold, .24em) + el
+    producto en dorado (11 px, bold, .16em). El texto es HTML con Geist, no
+    parte de un SVG: antes, dentro del logo de 168 px, el nombre del producto
+    quedaba en unos 5 px y no se leía.
+  - `.db-lockup-descriptor` (cliente u obra, 11 px en mayúsculas) fuera del logo.
+  - `.db-mark` (48 px) y `.db-mark--large` (56 px, tarjeta de entrada).
+  - `.db-brand-block`: el bloque de marca del riel (108 px de alto, línea inferior).
+  - `.db-on-dark` para el riel, oscuro en los dos temas.
+- El símbolo canónico vive en `src/marca/` y viaja dentro del CSS como data URI;
+  el tema oscuro cambia el dibujo con las mismas reglas que `tokens.css`.
+- Tokens nuevos: `--db-brand-mark`, `-mark-large`, `-gap`, `-type-gap`,
+  `-name-size`, `-name-tracking`, `-product-size`, `-product-tracking`,
+  `-block-height`, `-block-padding-x`.
+- Pruebas: el CSS generado está al día y trae el símbolo canónico una vez; el
+  dorado del producto y el descriptor llegan a 4.5:1 sobre el fondo, las
+  tarjetas y el riel.
+
 ## 0.7.0 — 2026-11-13
 
 - `src/estados.css` (export `@daybook/design/estados.css`): el esqueleto de carga
