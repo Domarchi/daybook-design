@@ -1,4 +1,4 @@
-/* @daybook/design 0.5.1 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.6.0 — generado desde src/tokens.json. No editar a mano. */
 
 /* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
    en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
@@ -64,6 +64,22 @@
   --db-topbar-height: 64px;
   --db-content-max: 1360px;
   --db-content-gutter: 32px;
+  --db-toast-offset: 24px;
+  --db-toast-max-width: 420px;
+  --db-toast-min-height: 48px;
+  --db-toast-padding-y: 12px;
+  --db-toast-padding-x: 16px;
+  --db-toast-radius: var(--db-radius-control);
+  --db-toast-font-size: var(--db-text-body);
+  --db-toast-icon: 20px;
+  --db-toast-shadow: 0 12px 32px rgba(0, 0, 0, .28);
+  --db-toast-duration: 4000ms;
+  --db-toast-duration-undo: 10000ms;
+  --db-skeleton-radius: var(--db-radius-small);
+  --db-skeleton-duration: 1400ms;
+  --db-empty-icon: 44px;
+  --db-empty-padding-y: 40px;
+  --db-empty-text-max: 420px;
 }
 
 :root {
@@ -101,6 +117,18 @@
   --db-rail-active: rgba(243, 239, 228, 0.14);
   --db-rail-focus: #efc56e;
   --db-rail-indicator: #efc56e;
+  --db-toast-bg: #11120f;
+  --db-toast-text: #f3efe4;
+  --db-toast-border: #45443b;
+  --db-toast-success: #5bc99a;
+  --db-toast-danger: #ee7b83;
+  --db-toast-danger-bg: #2b1614;
+  --db-toast-danger-border: #8a3f37;
+  --db-danger-action: #b3261e;
+  --db-danger-action-hover: #941f19;
+  --db-danger-action-text: #ffffff;
+  --db-skeleton: #eceeef;
+  --db-skeleton-shine: #f7f8f9;
 }
 
 :root[data-theme="dark"],
@@ -139,6 +167,18 @@
   --db-rail-active: rgba(255, 255, 255, 0.10);
   --db-rail-focus: #edc879;
   --db-rail-indicator: #edc879;
+  --db-toast-bg: #171717;
+  --db-toast-text: #ededed;
+  --db-toast-border: #303030;
+  --db-toast-success: #5bc99a;
+  --db-toast-danger: #ee7b83;
+  --db-toast-danger-bg: #361d1b;
+  --db-toast-danger-border: #ee7b83;
+  --db-danger-action: #c93a33;
+  --db-danger-action-hover: #b0302a;
+  --db-danger-action-text: #ffffff;
+  --db-skeleton: #171717;
+  --db-skeleton-shine: #222222;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -177,5 +217,17 @@
     --db-rail-active: rgba(255, 255, 255, 0.10);
     --db-rail-focus: #edc879;
     --db-rail-indicator: #edc879;
+    --db-toast-bg: #171717;
+    --db-toast-text: #ededed;
+    --db-toast-border: #303030;
+    --db-toast-success: #5bc99a;
+    --db-toast-danger: #ee7b83;
+    --db-toast-danger-bg: #361d1b;
+    --db-toast-danger-border: #ee7b83;
+    --db-danger-action: #c93a33;
+    --db-danger-action-hover: #b0302a;
+    --db-danger-action-text: #ffffff;
+    --db-skeleton: #171717;
+    --db-skeleton-shine: #222222;
   }
 }

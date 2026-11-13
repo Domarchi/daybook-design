@@ -1,6 +1,6 @@
 {
   "name": "@daybook/design",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Tokens de diseño compartidos de la familia Daybook: Parte Diario, Travel y Ticket.",
   "type": "module",
   "license": "UNLICENSED",

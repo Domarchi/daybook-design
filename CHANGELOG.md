@@ -1,5 +1,17 @@
 # Cambios
 
+## 0.6.0 — 2026-11-13
+
+- Flujos y estados (Fase 5), decididos el 2026-11-13:
+  - Aviso: tarjeta oscura en los dos temas (`--db-toast-*`), abajo al centro del
+    contenido, 48 px de alto mínimo, 4 s (10 s con «Deshacer»); variante de error
+    con su propio par de rojos, elegidos contra el fondo del aviso.
+  - Botón de peligro de los diálogos (`--db-danger-action*`), texto blanco 4.5:1.
+  - Esqueleto de carga (`--db-skeleton`, `--db-skeleton-shine`, 1400 ms) y
+    medidas del vacío común (ícono de 44 px, texto de 420 px como máximo).
+- Pruebas: contraste del aviso y del botón de peligro; el esqueleto se distingue
+  de la tarjeta sin pasar de 1.6:1.
+
 ## 0.5.1 — 2026-11-12
 
 - `--db-rail-width-compact` (214 px): el riel en tableta, hasta 1024 px de ancho.

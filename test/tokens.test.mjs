@@ -49,6 +49,15 @@ const pares = [
   ["rail-text-muted", "rail-bg", 4.5, "texto apagado del riel"],
   ["rail-focus", "rail-bg", 3, "foco en el riel"],
   ["rail-indicator", "rail-bg", 3, "barra del ítem activo del riel"],
+  ["toast-text", "toast-bg", 4.5, "texto del aviso"],
+  ["toast-success", "toast-bg", 3, "ícono de éxito del aviso"],
+  ["toast-danger", "toast-bg", 3, "ícono de error sobre el aviso normal"],
+  ["toast-text", "toast-danger-bg", 4.5, "texto del aviso de error"],
+  ["toast-danger", "toast-danger-bg", 3, "ícono del aviso de error"],
+  ["toast-bg", "bg", 1.15, "el aviso se separa del fondo"],
+  ["danger-action-text", "danger-action", 4.5, "botón de peligro"],
+  ["danger-action-text", "danger-action-hover", 4.5, "botón de peligro bajo el mouse"],
+  ["danger-action", "surface", 3, "botón de peligro sobre el diálogo"],
 ];
 
 for (const tema of ["light", "dark"]) {
@@ -113,6 +122,21 @@ test("el layout común: riel de 232 px, cabecera de 64 px, contenido de 1360 px"
   assert.equal(escala["topbar-height"], "64px");
   assert.equal(escala["content-max"], "1360px");
   assert.ok(parseInt(escala["rail-item-height"]) >= 44, "los ítems del riel son objetivos táctiles");
+});
+
+test("flujos y estados: aviso abajo al centro, 4 s (10 s con «Deshacer»), esqueleto y vacío", () => {
+  const { escala } = tokens;
+  assert.equal(escala["toast-duration"], "4000ms");
+  assert.equal(escala["toast-duration-undo"], "10000ms");
+  assert.ok(parseInt(escala["toast-min-height"]) >= 44, "el aviso es un objetivo táctil (lleva «Deshacer» o ✕)");
+  assert.equal(escala["toast-max-width"], "420px");
+  assert.equal(escala["empty-icon"], "44px");
+  assert.match(escala["skeleton-duration"], /^\d+ms$/);
+  // El esqueleto se distingue de la tarjeta donde se dibuja, sin gritar.
+  for (const tema of ["light", "dark"]) {
+    const r = contraste(tokens[tema].skeleton, tokens[tema].surface);
+    assert.ok(r >= 1.05 && r < 1.6, `${tema}: esqueleto contra la tarjeta ${r.toFixed(2)}`);
+  }
 });
 
 test("cada valor es un color hexadecimal de 6 dígitos o un rgba()", () => {
