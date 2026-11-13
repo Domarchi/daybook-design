@@ -1,5 +1,11 @@
 # Cambios
 
+## 0.5.1 — 2026-11-12
+
+- `--db-rail-width-compact` (214 px): el riel en tableta, hasta 1024 px de ancho.
+  Con 232 px, en una tableta vertical (768 px) el contenido de Parte Diario
+  quedaba bajo 480 px; 214 px era el riel compacto que ya usaba.
+
 ## 0.5.0 — 2026-11-12
 
 - Layout común, decidido el 2026-11-12: riel de 232 px (`--db-rail-width`) con

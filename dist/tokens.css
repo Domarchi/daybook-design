@@ -1,4 +1,4 @@
-/* @daybook/design 0.5.0 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.5.1 — generado desde src/tokens.json. No editar a mano. */
 
 /* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
    en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
@@ -58,6 +58,7 @@
   --db-table-head-tracking: .08em;
   --db-table-head-transform: uppercase;
   --db-rail-width: 232px;
+  --db-rail-width-compact: 214px;
   --db-rail-item-height: 44px;
   --db-rail-indicator-width: 3px;
   --db-topbar-height: 64px;

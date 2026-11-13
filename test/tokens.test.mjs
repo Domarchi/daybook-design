@@ -107,6 +107,9 @@ test("los componentes comunes usan la escala y respetan el objetivo táctil", ()
 test("el layout común: riel de 232 px, cabecera de 64 px, contenido de 1360 px", () => {
   const { escala } = tokens;
   assert.equal(escala["rail-width"], "232px");
+  // En tableta (hasta 1024 px) el riel es compacto: con 232 px, a 768 px el
+  // contenido de Parte Diario bajaba de 480 px.
+  assert.equal(escala["rail-width-compact"], "214px");
   assert.equal(escala["topbar-height"], "64px");
   assert.equal(escala["content-max"], "1360px");
   assert.ok(parseInt(escala["rail-item-height"]) >= 44, "los ítems del riel son objetivos táctiles");

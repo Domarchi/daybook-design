@@ -31,7 +31,7 @@ Escala (igual en los dos temas):
 | Botón | `--db-button-height` 44, `-padding-x` 16, `-font-size` 14, `-weight` semibold, `-radius` 8 |
 | Campo | `--db-field-height` 44, `-padding-x` 12, `-font-size` 14, `-radius` 8 (borde: `--db-border-strong`) |
 | Pastilla | `--db-badge-height` 24, `-padding-x` 8, `-font-size` 12, `-weight` semibold, `-radius` píldora, `-dot` 6 |
-| Layout | `--db-rail-width` 232, `--db-rail-item-height` 44, `--db-rail-indicator-width` 3, `--db-topbar-height` 64, `--db-content-max` 1360, `--db-content-gutter` 32 |
+| Layout | `--db-rail-width` 232 (`-compact` 214 en tableta, hasta 1024 px), `--db-rail-item-height` 44, `--db-rail-indicator-width` 3, `--db-topbar-height` 64, `--db-content-max` 1360, `--db-content-gutter` 32 |
 | Encabezado de tabla | `--db-table-head-font-size` 12, `-weight` semibold, `-tracking` .08em, `-transform` uppercase (sin fondo) |
 
 ### Decisiones que fija
