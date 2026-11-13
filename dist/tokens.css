@@ -1,4 +1,4 @@
-/* @daybook/design 0.4.0 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.5.0 — generado desde src/tokens.json. No editar a mano. */
 
 /* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
    en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
@@ -57,6 +57,12 @@
   --db-table-head-weight: var(--db-weight-semibold);
   --db-table-head-tracking: .08em;
   --db-table-head-transform: uppercase;
+  --db-rail-width: 232px;
+  --db-rail-item-height: 44px;
+  --db-rail-indicator-width: 3px;
+  --db-topbar-height: 64px;
+  --db-content-max: 1360px;
+  --db-content-gutter: 32px;
 }
 
 :root {
@@ -93,6 +99,7 @@
   --db-rail-hover: rgba(255, 255, 255, 0.06);
   --db-rail-active: rgba(243, 239, 228, 0.14);
   --db-rail-focus: #efc56e;
+  --db-rail-indicator: #efc56e;
 }
 
 :root[data-theme="dark"],
@@ -130,6 +137,7 @@
   --db-rail-hover: rgba(255, 255, 255, 0.06);
   --db-rail-active: rgba(255, 255, 255, 0.10);
   --db-rail-focus: #edc879;
+  --db-rail-indicator: #edc879;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -167,5 +175,6 @@
     --db-rail-hover: rgba(255, 255, 255, 0.06);
     --db-rail-active: rgba(255, 255, 255, 0.10);
     --db-rail-focus: #edc879;
+    --db-rail-indicator: #edc879;
   }
 }

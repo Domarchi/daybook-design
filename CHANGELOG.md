@@ -1,5 +1,13 @@
 # Cambios
 
+## 0.5.0 — 2026-11-12
+
+- Layout común, decidido el 2026-11-12: riel de 232 px (`--db-rail-width`) con
+  ítems de 44 px, barra de 3 px en el ítem activo (`--db-rail-indicator`, dorado
+  sobre el riel en los dos temas), cabecera fija de 64 px (`--db-topbar-height`) y
+  contenido con tope de 1360 px y margen de 32 px.
+- Prueba: contraste 3:1 de la barra del activo sobre el riel.
+
 ## 0.4.0 — 2026-11-12
 
 - Medidas de los componentes comunes, decididas el 2026-11-12:

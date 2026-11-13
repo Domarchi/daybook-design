@@ -48,6 +48,7 @@ const pares = [
   ["rail-text", "rail-bg", 4.5, "texto del riel"],
   ["rail-text-muted", "rail-bg", 4.5, "texto apagado del riel"],
   ["rail-focus", "rail-bg", 3, "foco en el riel"],
+  ["rail-indicator", "rail-bg", 3, "barra del ítem activo del riel"],
 ];
 
 for (const tema of ["light", "dark"]) {
@@ -101,6 +102,14 @@ test("los componentes comunes usan la escala y respetan el objetivo táctil", ()
   for (const [nombre, valor] of Object.entries(escala))
     for (const [, ref] of valor.matchAll(/var\(--db-([\w-]+)\)/g))
       assert.ok(ref in escala || ref in tokens.light, `${nombre} apunta a --db-${ref}, que no existe`);
+});
+
+test("el layout común: riel de 232 px, cabecera de 64 px, contenido de 1360 px", () => {
+  const { escala } = tokens;
+  assert.equal(escala["rail-width"], "232px");
+  assert.equal(escala["topbar-height"], "64px");
+  assert.equal(escala["content-max"], "1360px");
+  assert.ok(parseInt(escala["rail-item-height"]) >= 44, "los ítems del riel son objetivos táctiles");
 });
 
 test("cada valor es un color hexadecimal de 6 dígitos o un rgba()", () => {
