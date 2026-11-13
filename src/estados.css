@@ -1,0 +1,169 @@
+/* @daybook/design — estados de carga y de vacío (Fase 5c).
+ *
+ * Lo único del paquete que no es un token: dos piezas que las tres apps dibujan
+ * igual y que, escritas tres veces, se separarían a la primera corrección.
+ * Se importa después de tokens.css:
+ *
+ *   import "@daybook/design/tokens.css";
+ *   import "@daybook/design/estados.css";
+ *
+ * Las clases llevan el prefijo `db-` para no chocar con las de cada app.
+ *
+ * ── Carga: esqueletos con la forma del contenido ────────────────────────────
+ * Mientras algo carga se dibuja su silueta —filas de una tabla, tarjetas de una
+ * lista— y no un «Cargando…» suelto: la pantalla no salta cuando llegan los
+ * datos y se entiende qué viene. El texto «…» queda solo en los botones
+ * («Guardando…»). El contenedor lleva role="status" y el texto «Cargando X…»
+ * oculto a la vista, para que el lector de pantalla lo siga anunciando.
+ *
+ *   <div class="db-skeleton-region" role="status" aria-busy="true">
+ *     <span class="db-visually-hidden">Cargando catálogo…</span>
+ *     <span class="db-skeleton db-skeleton--text" style="width: 40%"></span>
+ *   </div>
+ *
+ * ── Vacío: un solo dibujo ────────────────────────────────────────────────────
+ * Icono, título, una frase y, si la hay, una acción. Nada más.
+ *
+ *   <div class="db-empty">
+ *     <span class="db-empty__icon" aria-hidden="true"><svg …/></span>
+ *     <p class="db-empty__title">Aún no hay partes</p>
+ *     <p class="db-empty__text">Registra el primero cuando comience la actividad.</p>
+ *     <div class="db-empty__action"><button …>Nuevo parte</button></div>
+ *   </div>
+ */
+
+.db-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.db-skeleton-region {
+  display: grid;
+  gap: var(--db-space-3);
+}
+
+.db-skeleton {
+  display: block;
+  border-radius: var(--db-skeleton-radius);
+  background: linear-gradient(
+      90deg,
+      var(--db-skeleton) 0%,
+      var(--db-skeleton) 35%,
+      var(--db-skeleton-shine) 50%,
+      var(--db-skeleton) 65%,
+      var(--db-skeleton) 100%
+    )
+    0 0 / 300% 100%;
+  animation: db-skeleton-shine var(--db-skeleton-duration) linear infinite;
+}
+
+/* Alto de una línea de texto del cuerpo (14 px), de un título y de un control. */
+.db-skeleton--text {
+  height: 0.75rem;
+}
+
+.db-skeleton--title {
+  height: 1.125rem;
+}
+
+.db-skeleton--control {
+  height: var(--db-field-height);
+  border-radius: var(--db-field-radius);
+}
+
+.db-skeleton--avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--db-radius-pill);
+}
+
+/* Una fila de tabla: las celdas se reparten como las columnas reales. */
+.db-skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(var(--db-skeleton-columns, 4), minmax(0, 1fr));
+  align-items: center;
+  gap: var(--db-space-4);
+  min-height: 3rem;
+  padding: 0 var(--db-space-4);
+  border-bottom: 1px solid var(--db-border-subtle);
+}
+
+.db-skeleton-row:last-child {
+  border-bottom: 0;
+}
+
+/* Una tarjeta de lista: dos o tres líneas. */
+.db-skeleton-card {
+  display: grid;
+  gap: var(--db-space-2);
+  padding: var(--db-space-4);
+  border: 1px solid var(--db-border-subtle);
+  border-radius: var(--db-radius-card);
+}
+
+@keyframes db-skeleton-shine {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .db-skeleton {
+    animation: none;
+    background: var(--db-skeleton);
+  }
+}
+
+.db-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--db-empty-padding-y) var(--db-space-5);
+  text-align: center;
+}
+
+.db-empty__icon {
+  display: grid;
+  place-items: center;
+  width: var(--db-empty-icon);
+  height: var(--db-empty-icon);
+  margin-bottom: var(--db-space-3);
+  border-radius: var(--db-radius-control);
+  background: var(--db-surface-muted);
+  color: var(--db-text-muted);
+}
+
+.db-empty__title {
+  margin: 0;
+  color: var(--db-text);
+  font-size: var(--db-text-emphasis);
+  font-weight: var(--db-weight-semibold);
+  line-height: var(--db-leading-ui);
+}
+
+.db-empty__text {
+  max-width: var(--db-empty-text-max);
+  margin: var(--db-space-1) 0 0;
+  color: var(--db-text-muted);
+  font-size: var(--db-text-body);
+  line-height: var(--db-leading-body);
+}
+
+.db-empty__action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--db-space-2);
+  margin-top: var(--db-space-4);
+}

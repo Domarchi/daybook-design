@@ -148,3 +148,20 @@ test("cada valor es un color hexadecimal de 6 dígitos o un rgba()", () => {
 test("dist/tokens.css está generado desde src/tokens.json", () => {
   assert.equal(readFileSync(join(raiz, "dist/tokens.css"), "utf8"), generar());
 });
+
+test("estados.css (esqueleto y vacío) solo usa variables que existen", () => {
+  const css = readFileSync(join(raiz, "src/estados.css"), "utf8");
+  const nombres = new Set([...Object.keys(tokens.escala), ...Object.keys(tokens.light)]);
+  const usadas = [...css.matchAll(/var\(--db-([a-z0-9-]+)/g)].map((m) => m[1]);
+  assert.ok(usadas.length > 10);
+  // --db-skeleton-columns lo pone cada tabla (con 4 por defecto).
+  const faltan = usadas.filter((n) => !nombres.has(n) && n !== "skeleton-columns");
+  assert.deepEqual(faltan, []);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\) \{\s*\.db-skeleton \{\s*animation: none;/);
+  for (const tema of ["light", "dark"]) {
+    const icono = contraste(tokens[tema]["text-muted"], tokens[tema]["surface-muted"]);
+    assert.ok(icono >= 3, `${tema}: ícono del vacío ${icono.toFixed(2)}:1`);
+  }
+  const paquete = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
+  assert.equal(paquete.exports["./estados.css"], "./src/estados.css");
+});

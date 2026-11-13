@@ -3,10 +3,11 @@
 Fuente única del diseño de la familia Daybook: **Parte Diario**, **Daybook Travel** y **Daybook Ticket**.
 Un cambio aquí llega a las tres apps subiendo la versión en cada una; nadie vuelve a copiar colores a mano.
 
-## Qué trae (v0.6)
+## Qué trae (v0.7)
 
 - `src/tokens.json` — los colores (tema claro y oscuro) y la escala (fuentes, tamaños, radios, espacios), con un solo nombre por concepto.
 - `dist/tokens.css` — todo eso como variables `--db-*`, generado. **No se edita a mano.**
+- `src/estados.css` — lo único que no es un token: el **esqueleto de carga** (`.db-skeleton`, `.db-skeleton-row`, `.db-skeleton-card`) y el **vacío común** (`.db-empty` con `__icon`, `__title`, `__text`, `__action`). Escrito a mano, usa solo variables del paquete; las apps lo importan en vez de copiarlo. Ver el comentario de cabecera del archivo para el marcado.
 
 | Grupo | Variables |
 |---|---|
@@ -71,6 +72,7 @@ Y en `app/layout.tsx`, **antes** de los CSS propios:
 
 ```ts
 import "@daybook/design/tokens.css";
+import "@daybook/design/estados.css"; // esqueleto y vacío (desde 0.7)
 ```
 
 Para Geist, cargar las fuentes con `next/font` y poner sus variables en `<html>` (no en

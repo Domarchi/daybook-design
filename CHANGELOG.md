@@ -1,5 +1,14 @@
 # Cambios
 
+## 0.7.0 — 2026-11-13
+
+- `src/estados.css` (export `@daybook/design/estados.css`): el esqueleto de carga
+  y el vacío común de la Fase 5c, escritos una vez para las tres apps. Usa solo
+  variables del paquete; el brillo del esqueleto se apaga con
+  `prefers-reduced-motion`. Las clases llevan prefijo `db-`.
+- Pruebas: toda variable que usa `estados.css` existe en `tokens.json`, y el
+  ícono del vacío (`--db-text-muted` sobre `--db-surface-muted`) llega a 3:1.
+
 ## 0.6.0 — 2026-11-13
 
 - Flujos y estados (Fase 5), decididos el 2026-11-13:
