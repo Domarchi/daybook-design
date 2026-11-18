@@ -206,3 +206,31 @@ test("dist/marca.css está generado y trae el símbolo canónico de src/marca/",
   const paquete = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
   assert.equal(paquete.exports["./marca.css"], "./dist/marca.css");
 });
+
+test("riel.css: la lista del riel usa solo variables que existen y se lee en los dos temas", () => {
+  const css = readFileSync(join(raiz, "src/riel.css"), "utf8");
+  const nombres = new Set([...Object.keys(tokens.escala), ...Object.keys(tokens.light)]);
+  const usadas = [...css.matchAll(/var\(--db-([a-z0-9-]+)/g)].map((m) => m[1]);
+  assert.ok(usadas.length > 15);
+  assert.deepEqual(usadas.filter((n) => !nombres.has(n)), []);
+  // El ícono y el título de grupo empiezan donde el símbolo de la marca: 10 + 12 = 22 px.
+  const px = (n) => Number.parseFloat(tokens.escala[n]);
+  assert.equal(px("rail-inset") + px("rail-item-padding-x"), px("brand-block-padding-x"));
+  assert.equal(tokens.escala["rail-item-height"], "44px", "fila de 44 px, un dedo");
+  for (const tema of ["light", "dark"]) {
+    const t = tokens[tema];
+    for (const [color, que] of [
+      ["rail-link", "fila"],
+      ["rail-text-muted", "título de grupo"],
+      ["rail-indicator", "número que pide atención"],
+    ]) {
+      const r = contraste(t[color], t["rail-bg"]);
+      assert.ok(r >= 4.5, `${tema}: ${que} ${r.toFixed(2)}:1`);
+    }
+    // La fila se distingue del título de grupo: más clara que él.
+    assert.ok(contraste(t["rail-link"], t["rail-bg"]) > contraste(t["rail-text-muted"], t["rail-bg"]), `${tema}: fila sobre título`);
+  }
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+  const paquete = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
+  assert.equal(paquete.exports["./riel.css"], "./src/riel.css");
+});
