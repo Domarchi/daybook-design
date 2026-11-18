@@ -1,0 +1,157 @@
+/* @daybook/design — la lista del riel (navegación lateral).
+ *
+ * El bloque de marca ya era común (marca.css). Debajo, cada app dibujaba su
+ * lista a su manera: otro margen, otro aire entre filas, otra letra en los
+ * títulos de grupo y otra pastilla para los números. Esto la escribe una vez.
+ * Cada app conserva sus secciones, sus grupos y su pie; lo común es cómo se ven.
+ * Se importa después de tokens.css:
+ *
+ *   import "@daybook/design/tokens.css";
+ *   import "@daybook/design/riel.css";
+ *
+ * Medidas: la lista se mete --db-rail-inset (10 px) y cada fila tiene
+ * --db-rail-item-padding-x (12 px) por dentro, así el ícono y el título de
+ * grupo empiezan a 22 px, el mismo borde que el símbolo del bloque de marca
+ * (--db-brand-block-padding-x).
+ *
+ *   <nav class="db-rail-nav" aria-label="Navegación principal">
+ *     <p class="db-rail-section">Operación</p>
+ *     <a class="db-rail-link" aria-current="page" href="…">
+ *       <svg …/> <span class="db-rail-link__label">Partes diarios</span>
+ *       <span class="db-rail-count db-rail-count--alert">2</span>
+ *     </a>
+ *     <hr class="db-rail-divider" />
+ *   </nav>
+ *
+ * La fila marcada es la que lleva aria-current (o la clase .is-active, para
+ * listas que todavía la usan). El número va en gris; --alert lo pone en
+ * dorado cuando pide atención (partes por corregir), no cuando solo cuenta.
+ */
+
+.db-rail-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--db-rail-item-gap);
+  margin: 0;
+  padding: 0 var(--db-rail-inset);
+}
+
+.db-rail-section {
+  margin: 0;
+  padding: var(--db-space-4) var(--db-rail-item-padding-x) 6px;
+  color: var(--db-rail-text-muted);
+  font-family: var(--db-font-sans);
+  font-size: var(--db-text-overline);
+  font-weight: var(--db-weight-semibold);
+  letter-spacing: var(--db-rail-section-tracking);
+  line-height: var(--db-leading-ui);
+  text-transform: uppercase;
+}
+
+.db-rail-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--db-space-3);
+  width: 100%;
+  min-height: var(--db-rail-item-height);
+  margin: 0;
+  padding: 0 var(--db-rail-item-padding-x);
+  border: 0;
+  border-radius: var(--db-radius-control);
+  background: transparent;
+  color: var(--db-rail-link);
+  font-family: var(--db-font-sans);
+  font-size: var(--db-text-meta);
+  font-weight: var(--db-weight-medium);
+  line-height: var(--db-leading-ui);
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--db-duration-fast) var(--db-ease-out),
+    background-color var(--db-duration-fast) var(--db-ease-out),
+    transform var(--db-duration-fast) var(--db-ease-out);
+}
+
+.db-rail-link > svg {
+  flex: none;
+  width: var(--db-rail-icon);
+  height: var(--db-rail-icon);
+}
+
+.db-rail-link__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-rail-link:hover {
+  background: var(--db-rail-hover);
+  color: var(--db-rail-text);
+}
+
+.db-rail-link:active {
+  transform: scale(0.98);
+}
+
+.db-rail-link[aria-current="page"],
+.db-rail-link.is-active {
+  background: var(--db-rail-active);
+  color: var(--db-rail-text);
+  font-weight: var(--db-weight-semibold);
+  box-shadow: inset var(--db-rail-indicator-width) 0 0 var(--db-rail-indicator);
+}
+
+/* Dentro, para que el borde no lo corte la lista cuando se desplaza. */
+.db-rail-link:focus-visible {
+  outline: 2px solid var(--db-rail-focus);
+  outline-offset: -2px;
+}
+
+.db-rail-link:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.db-rail-count {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  min-width: var(--db-rail-count-height);
+  height: var(--db-rail-count-height);
+  margin-left: auto;
+  padding: 0 6px;
+  border-radius: var(--db-radius-pill);
+  background: var(--db-rail-hover);
+  color: var(--db-rail-link);
+  font-size: var(--db-text-caption);
+  font-style: normal;
+  font-weight: var(--db-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.db-rail-count--alert {
+  background: color-mix(in srgb, var(--db-rail-indicator) 16%, transparent);
+  color: var(--db-rail-indicator);
+}
+
+.db-rail-divider {
+  height: 1px;
+  margin: var(--db-space-2) var(--db-rail-item-padding-x);
+  border: 0;
+  background: var(--db-rail-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .db-rail-link {
+    transition: none;
+  }
+
+  .db-rail-link:active {
+    transform: none;
+  }
+}

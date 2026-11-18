@@ -9,6 +9,7 @@ Un cambio aquí llega a las tres apps subiendo la versión en cada una; nadie vu
 - `dist/tokens.css` — todo eso como variables `--db-*`, generado. **No se edita a mano.**
 - `src/estados.css` — lo único que no es un token: el **esqueleto de carga** (`.db-skeleton`, `.db-skeleton-row`, `.db-skeleton-card`) y el **vacío común** (`.db-empty` con `__icon`, `__title`, `__text`, `__action`). Escrito a mano, usa solo variables del paquete; las apps lo importan en vez de copiarlo. Ver el comentario de cabecera del archivo para el marcado.
 - `dist/marca.css` — el **sello de la familia**: `.db-lockup` (símbolo 48 px + DAYBOOK + producto en dorado, todo a la misma medida en las tres apps), `.db-lockup-descriptor`, `.db-mark` / `.db-mark--large` y `.db-brand-block` (bloque de marca del riel). Generado desde `src/marca.css` con el símbolo de `src/marca/` dentro; el marcado está en su cabecera.
+- `src/riel.css` — la **lista del riel**, debajo del bloque de marca: `.db-rail-nav`, `.db-rail-section` (título de grupo), `.db-rail-link` (fila de 44 px, marcada con `aria-current`), `.db-rail-count` (número; `--alert` en dorado cuando pide atención) y `.db-rail-divider`. Cada app conserva sus secciones y su pie; lo común es cómo se ven. Escrito a mano, solo con variables del paquete.
 
 | Grupo | Variables |
 |---|---|
@@ -76,6 +77,7 @@ Y en `app/layout.tsx`, **antes** de los CSS propios:
 import "@daybook/design/tokens.css";
 import "@daybook/design/estados.css"; // esqueleto y vacío (desde 0.7)
 import "@daybook/design/marca.css";   // el logo de la familia (desde 0.8)
+import "@daybook/design/riel.css";    // la lista del riel (desde 0.9)
 ```
 
 Para Geist, cargar las fuentes con `next/font` y poner sus variables en `<html>` (no en

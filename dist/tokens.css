@@ -1,4 +1,4 @@
-/* @daybook/design 0.8.0 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.9.0 — generado desde src/tokens.json. No editar a mano. */
 
 /* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
    en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
@@ -61,6 +61,12 @@
   --db-rail-width-compact: 214px;
   --db-rail-item-height: 44px;
   --db-rail-indicator-width: 3px;
+  --db-rail-inset: 10px;
+  --db-rail-item-gap: 2px;
+  --db-rail-item-padding-x: 12px;
+  --db-rail-icon: 18px;
+  --db-rail-section-tracking: .12em;
+  --db-rail-count-height: 20px;
   --db-topbar-height: 64px;
   --db-content-max: 1360px;
   --db-content-gutter: 32px;
@@ -122,6 +128,7 @@
   --db-rail-bg: #11120f;
   --db-rail-text: #f3efe4;
   --db-rail-text-muted: #c2bdae;
+  --db-rail-link: #dcd8cc;
   --db-rail-border: #45443b;
   --db-rail-hover: rgba(255, 255, 255, 0.06);
   --db-rail-active: rgba(243, 239, 228, 0.14);
@@ -172,6 +179,7 @@
   --db-rail-bg: #000000;
   --db-rail-text: #ededed;
   --db-rail-text-muted: #a1a1a1;
+  --db-rail-link: #c9c9c9;
   --db-rail-border: #303030;
   --db-rail-hover: rgba(255, 255, 255, 0.06);
   --db-rail-active: rgba(255, 255, 255, 0.10);
@@ -222,6 +230,7 @@
     --db-rail-bg: #000000;
     --db-rail-text: #ededed;
     --db-rail-text-muted: #a1a1a1;
+    --db-rail-link: #c9c9c9;
     --db-rail-border: #303030;
     --db-rail-hover: rgba(255, 255, 255, 0.06);
     --db-rail-active: rgba(255, 255, 255, 0.10);

@@ -1,7 +1,7 @@
 {
   "name": "@daybook/design",
-  "version": "0.8.0",
-  "description": "Tokens de diseño compartidos de la familia Daybook (Parte Diario, Travel y Ticket), los estilos comunes de carga y vacío, y el sello de la familia (logo).",
+  "version": "0.9.0",
+  "description": "Tokens de diseño compartidos de la familia Daybook (Parte Diario, Travel y Ticket), los estilos comunes de carga y vacío, el sello de la familia (logo) y la lista del riel.",
   "type": "module",
   "license": "UNLICENSED",
   "files": [
@@ -11,6 +11,7 @@
   "exports": {
     "./tokens.css": "./dist/tokens.css",
     "./estados.css": "./src/estados.css",
+    "./riel.css": "./src/riel.css",
     "./tokens.json": "./src/tokens.json",
     "./marca.css": "./dist/marca.css"
   },

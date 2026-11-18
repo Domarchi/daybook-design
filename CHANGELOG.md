@@ -1,5 +1,24 @@
 # Cambios
 
+## 0.9.0 — 2026-11-18
+
+- `src/riel.css` (export `@daybook/design/riel.css`): la lista del riel. Parte
+  Diario y Ticket dibujaban la navegación lateral cada una a su manera (otro
+  margen, otro aire entre filas, otra letra en los títulos de grupo, otra
+  pastilla para los números). Ahora es una:
+  - `.db-rail-nav`: la lista, metida 10 px; entre filas, 2 px.
+  - `.db-rail-section`: título de grupo, 11 px, semibold, .12em, en mayúsculas.
+  - `.db-rail-link`: fila de 44 px, 13 px medium; la marcada (`aria-current` o
+    `.is-active`) en semibold, con fondo y la barra dorada de 3 px.
+  - `.db-rail-count`: número en pastilla gris; `--alert` en dorado.
+  - `.db-rail-divider`: línea entre grupos.
+  - El ícono y el título de grupo empiezan a 22 px, el borde del símbolo.
+- Tokens nuevos: `--db-rail-link` (color de la fila, más claro que el título de
+  grupo), `--db-rail-inset`, `-item-gap`, `-item-padding-x`, `-icon`,
+  `-section-tracking`, `-count-height`.
+- Pruebas: variables existentes, alineación con la marca y contraste 4.5:1 de
+  fila, título y número en los dos temas.
+
 ## 0.8.0 — 2026-11-13
 
 - `dist/marca.css` (export `@daybook/design/marca.css`): el sello de la familia.
