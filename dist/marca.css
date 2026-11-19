@@ -1,4 +1,4 @@
-/* @daybook/design 0.9.0 — generado desde src/marca.css y src/marca/*.svg. No editar a mano. */
+/* @daybook/design 0.10.0 — generado desde src/marca.css y src/marca/*.svg. No editar a mano. */
 /* @daybook/design — el sello de la familia: símbolo + DAYBOOK + producto.
  *
  * Las tres apps dibujan su logo con estas clases, así que miden lo mismo y se
@@ -29,7 +29,7 @@
  *
  * ── Solo el símbolo ──────────────────────────────────────────────────────────
  *   <span class="db-mark db-mark--large" role="img" aria-label="Daybook"></span>
- * 48 px por omisión; `--large` (56 px) en la tarjeta de entrada.
+ * 40 px por omisión; `--large` (56 px) en la tarjeta de entrada.
  */
 
 /* Los dos dibujos, una sola vez cada uno. */
@@ -121,7 +121,7 @@
   justify-content: center;
   gap: var(--db-space-2);
   min-height: var(--db-brand-block-height);
-  padding: var(--db-space-4) var(--db-brand-block-padding-x);
+  padding: var(--db-space-3) var(--db-brand-block-padding-x);
   border-bottom: 1px solid var(--db-rail-border);
 }
 

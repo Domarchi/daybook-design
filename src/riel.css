@@ -146,12 +146,137 @@
   background: var(--db-rail-border);
 }
 
+/* ── El pie del riel ──────────────────────────────────────────────────────────
+ * Igual en las tres apps: quién está y el tema, en una fila. Salir y la cuenta
+ * viven en Configuración, que es una fila más de la lista. Lo que la app quiera
+ * mostrar encima (Pendientes en Parte Diario) va dentro del pie, antes de la fila.
+ *
+ *   <div class="db-rail-footer">
+ *     <div class="db-rail-account">
+ *       <span class="db-rail-avatar" aria-hidden="true">JD</span>
+ *       <span class="db-rail-account__text">
+ *         <strong class="db-rail-account__name">Joaquín Domarchi</strong>
+ *         <small class="db-rail-account__role">Administrador</small>
+ *       </span>
+ *       <button class="db-rail-icon-button" aria-label="Tema: Oscuro">…</button>
+ *     </div>
+ *   </div>
+ */
+
+.db-rail-footer {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--db-space-3);
+  padding: var(--db-space-3) var(--db-rail-inset);
+}
+
+.db-rail-account {
+  display: flex;
+  align-items: center;
+  gap: var(--db-space-2);
+  min-width: 0;
+  padding-top: var(--db-space-3);
+  border-top: 1px solid var(--db-rail-border);
+}
+
+.db-rail-avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--db-rail-avatar);
+  height: var(--db-rail-avatar);
+  border-radius: var(--db-radius-control);
+  background: var(--db-rail-active);
+  color: var(--db-rail-text);
+  font-family: var(--db-font-sans);
+  font-size: var(--db-text-caption);
+  font-weight: var(--db-weight-bold);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.db-rail-account__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.db-rail-account__name,
+.db-rail-account__role {
+  overflow: hidden;
+  font-family: var(--db-font-sans);
+  font-size: var(--db-text-caption);
+  line-height: var(--db-leading-ui);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.db-rail-account__name {
+  color: var(--db-rail-link);
+  font-weight: var(--db-weight-semibold);
+}
+
+.db-rail-account__role {
+  color: var(--db-rail-text-muted);
+  font-weight: var(--db-weight-regular);
+}
+
+/* Botón de ícono del riel (el tema, la ✕ del cajón): 44 px, un dedo. */
+.db-rail-icon-button {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--db-rail-border);
+  border-radius: var(--db-radius-control);
+  background: transparent;
+  color: var(--db-rail-text);
+  cursor: pointer;
+  transition:
+    color var(--db-duration-fast) var(--db-ease-out),
+    background-color var(--db-duration-fast) var(--db-ease-out),
+    border-color var(--db-duration-fast) var(--db-ease-out),
+    transform var(--db-duration-fast) var(--db-ease-out);
+}
+
+.db-rail-icon-button > svg {
+  width: var(--db-rail-icon);
+  height: var(--db-rail-icon);
+}
+
+.db-rail-icon-button:hover {
+  border-color: var(--db-rail-text-muted);
+  background: var(--db-rail-hover);
+}
+
+.db-rail-icon-button:active {
+  transform: scale(0.96);
+}
+
+.db-rail-icon-button:focus-visible {
+  outline: 2px solid var(--db-rail-focus);
+  outline-offset: 2px;
+}
+
+.db-rail-icon-button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .db-rail-link {
+  .db-rail-link,
+  .db-rail-icon-button {
     transition: none;
   }
 
-  .db-rail-link:active {
+  .db-rail-link:active,
+  .db-rail-icon-button:active {
     transform: none;
   }
 }

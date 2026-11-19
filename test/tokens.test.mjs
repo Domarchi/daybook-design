@@ -168,9 +168,10 @@ test("estados.css (esqueleto y vacío) solo usa variables que existen", () => {
 
 test("el sello de la familia: mismo símbolo, mismas medidas y texto legible en las tres apps", () => {
   const { escala } = tokens;
-  assert.equal(escala["brand-mark"], "48px");
+  // 40 px desde 0.10.0: con 48 el logo pesaba más que el menú que encabeza.
+  assert.equal(escala["brand-mark"], "40px");
   assert.equal(escala["brand-mark-large"], "56px");
-  assert.equal(escala["brand-name-size"], escala["text-emphasis"], "DAYBOOK a 16 px");
+  assert.equal(escala["brand-name-size"], escala["text-body"], "DAYBOOK a 14 px");
   assert.equal(escala["brand-product-size"], escala["text-overline"], "el producto a 11 px, el mínimo de la escala");
   // El producto va en dorado: tiene que leerse sobre el fondo de la entrada y sobre el riel.
   for (const tema of ["light", "dark"]) {
