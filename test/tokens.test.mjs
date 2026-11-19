@@ -235,3 +235,19 @@ test("riel.css: la lista del riel usa solo variables que existen y se lee en los
   const paquete = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
   assert.equal(paquete.exports["./riel.css"], "./src/riel.css");
 });
+
+test("riel.css 0.10: pie, cajón, velo y movimiento reducido", () => {
+  const css = readFileSync(join(raiz, "src/riel.css"), "utf8");
+  for (const clase of [".db-rail-footer", ".db-rail-account", ".db-rail-avatar", ".db-rail-icon-button", ".db-rail-scroll", ".db-rail-drawer", ".db-rail-scrim", ".db-view-enter"]) {
+    assert.ok(css.includes(`${clase} {`), `falta ${clase}`);
+  }
+  // El cajón se ve mientras sale: visibility espera lo que dura la salida.
+  assert.match(css, /visibility 0s linear var\(--db-duration-exit\)/);
+  // El hover no queda pegado después de un toque.
+  assert.match(css, /@media \(hover: hover\) and \(pointer: fine\) \{\s*\.db-rail-link:hover/);
+  // Con movimiento reducido el cajón no se desplaza.
+  const reducido = css.slice(css.indexOf("@media (prefers-reduced-motion: reduce)"));
+  assert.match(reducido, /\.db-rail-drawer[\s\S]*transform: none/);
+  assert.equal(tokens.escala["rail-avatar"], "34px");
+  for (const tema of ["light", "dark"]) assert.ok(tokens[tema]["rail-scrim"], `${tema}: falta rail-scrim`);
+});

@@ -72,6 +72,7 @@
   transition:
     color var(--db-duration-fast) var(--db-ease-out),
     background-color var(--db-duration-fast) var(--db-ease-out),
+    box-shadow var(--db-duration-fast) var(--db-ease-out),
     transform var(--db-duration-fast) var(--db-ease-out);
 }
 
@@ -88,9 +89,18 @@
   text-overflow: ellipsis;
 }
 
-.db-rail-link:hover {
-  background: var(--db-rail-hover);
-  color: var(--db-rail-text);
+/* El resaltado solo donde hay mouse: en una tableta de terreno, después de un
+   toque quedaba pegado en la fila. */
+@media (hover: hover) and (pointer: fine) {
+  .db-rail-link:hover {
+    background: var(--db-rail-hover);
+    color: var(--db-rail-text);
+  }
+
+  .db-rail-icon-button:hover {
+    border-color: var(--db-rail-text-muted);
+    background: var(--db-rail-hover);
+  }
 }
 
 .db-rail-link:active {
@@ -250,18 +260,29 @@
   height: var(--db-rail-icon);
 }
 
-.db-rail-icon-button:hover {
-  border-color: var(--db-rail-text-muted);
-  background: var(--db-rail-hover);
-}
-
 .db-rail-icon-button:active {
   transform: scale(0.96);
 }
 
 .db-rail-icon-button:focus-visible {
   outline: 2px solid var(--db-rail-focus);
-  outline-offset: 2px;
+  outline-offset: -2px;
+}
+
+/* El ícono del tema cambia al tocar el botón (la app lo vuelve a montar con
+   otra key): entra con un fundido corto, la única señal de que el toque llegó,
+   porque el botón no tiene texto a la vista. */
+.db-rail-icon-button > svg {
+  transition:
+    opacity 160ms var(--db-ease-out),
+    scale 160ms var(--db-ease-out);
+}
+
+@starting-style {
+  .db-rail-icon-button > svg {
+    opacity: 0;
+    scale: 0.85;
+  }
 }
 
 .db-rail-icon-button:disabled {
@@ -269,6 +290,105 @@
   opacity: 0.55;
 }
 
+/* ── Desplazamiento de la lista ───────────────────────────────────────────────
+ * Cuando la lista no cabe, una sombra arriba o abajo avisa que hay más filas
+ * (Configuración quedaba escondida bajo el borde sin ninguna pista). Las capas
+ * `local` tapan la sombra cuando la lista está en el tope; no se anima nada.
+ *   <div class="db-rail-scroll"> <nav class="db-rail-nav">…</nav> </div>
+ */
+.db-rail-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background:
+    linear-gradient(var(--db-rail-bg) 30%, transparent) top / 100% 24px no-repeat local,
+    linear-gradient(transparent, var(--db-rail-bg) 70%) bottom / 100% 24px no-repeat local,
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.5), transparent) top / 100% 10px no-repeat scroll,
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.5), transparent) bottom / 100% 10px no-repeat scroll;
+  background-color: var(--db-rail-bg);
+}
+
+/* ── El cajón del teléfono ────────────────────────────────────────────────────
+ * Cada app decide desde qué ancho el riel es cajón; las tres lo mueven igual.
+ * Dentro de su media query, la app pone `.db-rail-drawer` en el riel y
+ * `data-open` cuando está abierto. Al abrir, `visibility` cambia en el acto
+ * (si no, el foco no entra); al cerrar espera a que termine de salir.
+ */
+.db-rail-drawer {
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition:
+    transform var(--db-duration-exit) var(--db-ease-drawer),
+    visibility 0s linear var(--db-duration-exit);
+}
+
+.db-rail-drawer[data-open="true"] {
+  visibility: visible;
+  transform: none;
+  box-shadow: var(--db-rail-drawer-shadow);
+  transition: transform var(--db-drawer-duration) var(--db-ease-drawer);
+}
+
+/* El velo detrás del cajón: siempre montado, se funde y deja pasar los toques
+   cuando está cerrado. Tocarlo cierra el cajón (lo hace la app). */
+.db-rail-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--db-rail-scrim);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--db-duration-exit) var(--db-ease-out);
+}
+
+.db-rail-scrim[data-open="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transition-duration: var(--db-drawer-duration);
+}
+
+/* ── Al cambiar de vista ──────────────────────────────────────────────────────
+ * El contenedor de la vista, con key por vista (no por datos): confirma que el
+ * toque en el riel cambió la pantalla cuando dos vistas se parecen.
+ */
+.db-view-enter {
+  animation: db-view-enter 180ms var(--db-ease-out) both;
+}
+
+@keyframes db-view-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* Un número que pide atención entra con un pulso corto cuando cambia (la app
+   lo vuelve a montar con key = número). Solo --alert: es trabajo nuevo. */
+.db-rail-count--alert {
+  animation: db-count-in 180ms var(--db-ease-out);
+}
+
+@keyframes db-count-in {
+  from {
+    opacity: 0.6;
+    scale: 0.9;
+  }
+}
+
+/* ── Cambio de tema ───────────────────────────────────────────────────────────
+ * Mientras cambia el tema, nada se anima: las filas y botones con 120 ms de
+ * fundido quedaban atrás de las superficies y el riel parpadeaba. La app pone
+ * la clase en <html>, cambia el tema y la saca al cuadro siguiente.
+ */
+:root.db-theme-switching *,
+:root.db-theme-switching *::before,
+:root.db-theme-switching *::after {
+  transition: none !important;
+}
+
+/* Movimiento reducido: sin desplazamientos ni escalas; los fundidos quedan,
+   cortos, porque dicen qué apareció y qué se fue. */
 @media (prefers-reduced-motion: reduce) {
   .db-rail-link,
   .db-rail-icon-button {
@@ -278,5 +398,43 @@
   .db-rail-link:active,
   .db-rail-icon-button:active {
     transform: none;
+  }
+
+  .db-rail-icon-button > svg {
+    transition: opacity 120ms linear;
+    scale: none;
+  }
+
+  .db-rail-drawer,
+  .db-rail-drawer[data-open="true"] {
+    transform: none;
+    opacity: 0;
+    transition:
+      opacity 140ms linear,
+      visibility 0s linear 140ms;
+  }
+
+  .db-rail-drawer[data-open="true"] {
+    opacity: 1;
+    transition: opacity 140ms linear;
+  }
+
+  .db-rail-scrim,
+  .db-rail-scrim[data-open="true"] {
+    transition-duration: 140ms;
+  }
+
+  .db-view-enter {
+    animation: db-view-fade 120ms linear both;
+  }
+
+  .db-rail-count--alert {
+    animation: none;
+  }
+}
+
+@keyframes db-view-fade {
+  from {
+    opacity: 0;
   }
 }
