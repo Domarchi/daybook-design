@@ -168,9 +168,10 @@ test("estados.css (esqueleto y vacío) solo usa variables que existen", () => {
 
 test("el sello de la familia: mismo símbolo, mismas medidas y texto legible en las tres apps", () => {
   const { escala } = tokens;
-  assert.equal(escala["brand-mark"], "48px");
+  // 40 px desde 0.10.0: con 48 el logo pesaba más que el menú que encabeza.
+  assert.equal(escala["brand-mark"], "40px");
   assert.equal(escala["brand-mark-large"], "56px");
-  assert.equal(escala["brand-name-size"], escala["text-emphasis"], "DAYBOOK a 16 px");
+  assert.equal(escala["brand-name-size"], escala["text-body"], "DAYBOOK a 14 px");
   assert.equal(escala["brand-product-size"], escala["text-overline"], "el producto a 11 px, el mínimo de la escala");
   // El producto va en dorado: tiene que leerse sobre el fondo de la entrada y sobre el riel.
   for (const tema of ["light", "dark"]) {
@@ -233,4 +234,20 @@ test("riel.css: la lista del riel usa solo variables que existen y se lee en los
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
   const paquete = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
   assert.equal(paquete.exports["./riel.css"], "./src/riel.css");
+});
+
+test("riel.css 0.10: pie, cajón, velo y movimiento reducido", () => {
+  const css = readFileSync(join(raiz, "src/riel.css"), "utf8");
+  for (const clase of [".db-rail-footer", ".db-rail-account", ".db-rail-avatar", ".db-rail-icon-button", ".db-rail-scroll", ".db-rail-drawer", ".db-rail-scrim", ".db-view-enter"]) {
+    assert.ok(css.includes(`${clase} {`), `falta ${clase}`);
+  }
+  // El cajón se ve mientras sale: visibility espera lo que dura la salida.
+  assert.match(css, /visibility 0s linear var\(--db-duration-exit\)/);
+  // El hover no queda pegado después de un toque.
+  assert.match(css, /@media \(hover: hover\) and \(pointer: fine\) \{\s*\.db-rail-link:hover/);
+  // Con movimiento reducido el cajón no se desplaza.
+  const reducido = css.slice(css.indexOf("@media (prefers-reduced-motion: reduce)"));
+  assert.match(reducido, /\.db-rail-drawer[\s\S]*transform: none/);
+  assert.equal(tokens.escala["rail-avatar"], "34px");
+  for (const tema of ["light", "dark"]) assert.ok(tokens[tema]["rail-scrim"], `${tema}: falta rail-scrim`);
 });

@@ -1,5 +1,30 @@
 # Cambios
 
+## 0.10.0 — 2026-11-19
+
+- Logo más chico: símbolo de 48 a 40 px y «DAYBOOK» de 16 a 14 px; el bloque
+  de marca del riel baja de 108 a 92 px (12 px arriba y abajo). El producto
+  queda en 11 px, el mínimo de la escala.
+- `riel.css`, el pie común: `.db-rail-footer`, `.db-rail-account` (avatar,
+  nombre y rol en una fila con línea arriba) y `.db-rail-icon-button` (44 px,
+  para el tema y la ✕ del cajón). Salir y la cuenta van en Configuración.
+- `riel.css`, movimiento:
+  - La barra dorada de la fila marcada se funde junto con el fondo.
+  - El resaltado de hover solo con mouse; en tabletas quedaba pegado.
+  - `.db-rail-scroll`: sombra arriba o abajo cuando la lista no cabe.
+  - `.db-rail-drawer` y `.db-rail-scrim`: el cajón del teléfono entra en
+    240 ms y sale en 200 ms con la misma curva en las tres apps, se ve
+    mientras sale y el velo se funde en vez de aparecer de golpe.
+  - `.db-view-enter`: la vista nueva entra con un fundido de 180 ms.
+  - El número `--alert` entra con un pulso corto cuando cambia.
+  - `.db-theme-switching` en `<html>` congela las transiciones mientras
+    cambia el tema, para que el riel no parpadee.
+  - Con movimiento reducido no hay desplazamientos ni escalas; quedan
+    fundidos cortos.
+- Tokens nuevos: `--db-rail-avatar`, `--db-drawer-duration`,
+  `--db-duration-exit`, `--db-ease-drawer`, `--db-rail-drawer-shadow` y
+  `--db-rail-scrim` (por tema).
+
 ## 0.9.0 — 2026-11-18
 
 - `src/riel.css` (export `@daybook/design/riel.css`): la lista del riel. Parte

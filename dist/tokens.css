@@ -1,4 +1,4 @@
-/* @daybook/design 0.9.0 — generado desde src/tokens.json. No editar a mano. */
+/* @daybook/design 0.10.0 — generado desde src/tokens.json. No editar a mano. */
 
 /* Fuentes, tamaños, pesos, interlineados, radios, espacios y movimiento: iguales
    en los dos temas. --db-font-sans y --db-font-mono usan las variables que pone
@@ -86,16 +86,21 @@
   --db-empty-icon: 44px;
   --db-empty-padding-y: 40px;
   --db-empty-text-max: 420px;
-  --db-brand-mark: 48px;
+  --db-brand-mark: 40px;
   --db-brand-mark-large: 56px;
   --db-brand-gap: 8px;
-  --db-brand-type-gap: 6px;
-  --db-brand-name-size: 16px;
+  --db-brand-type-gap: 5px;
+  --db-brand-name-size: 14px;
   --db-brand-name-tracking: 0.24em;
   --db-brand-product-size: 11px;
   --db-brand-product-tracking: 0.16em;
-  --db-brand-block-height: 108px;
+  --db-brand-block-height: 92px;
   --db-brand-block-padding-x: 22px;
+  --db-rail-avatar: 34px;
+  --db-drawer-duration: 240ms;
+  --db-duration-exit: 200ms;
+  --db-ease-drawer: cubic-bezier(.32, .72, 0, 1);
+  --db-rail-drawer-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
 
 :root {
@@ -146,6 +151,7 @@
   --db-danger-action-text: #ffffff;
   --db-skeleton: #eceeef;
   --db-skeleton-shine: #f7f8f9;
+  --db-rail-scrim: rgba(17, 18, 15, 0.56);
 }
 
 :root[data-theme="dark"],
@@ -197,6 +203,7 @@
   --db-danger-action-text: #ffffff;
   --db-skeleton: #171717;
   --db-skeleton-shine: #222222;
+  --db-rail-scrim: rgba(0, 0, 0, 0.64);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -248,5 +255,6 @@
     --db-danger-action-text: #ffffff;
     --db-skeleton: #171717;
     --db-skeleton-shine: #222222;
+    --db-rail-scrim: rgba(0, 0, 0, 0.64);
   }
 }

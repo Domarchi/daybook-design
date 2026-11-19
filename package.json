@@ -1,6 +1,6 @@
 {
   "name": "@daybook/design",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Tokens de diseño compartidos de la familia Daybook (Parte Diario, Travel y Ticket), los estilos comunes de carga y vacío, el sello de la familia (logo) y la lista del riel.",
   "type": "module",
   "license": "UNLICENSED",
