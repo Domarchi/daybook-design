@@ -317,6 +317,8 @@
  */
 .db-rail-drawer {
   visibility: hidden;
+  /* Mientras sale todavía tapa el ☰: sin esto, un segundo toque rápido se perdía. */
+  pointer-events: none;
   transform: translateX(-100%);
   transition:
     transform var(--db-duration-exit) var(--db-ease-drawer),
@@ -325,6 +327,7 @@
 
 .db-rail-drawer[data-open="true"] {
   visibility: visible;
+  pointer-events: auto;
   transform: none;
   box-shadow: var(--db-rail-drawer-shadow);
   transition: transform var(--db-drawer-duration) var(--db-ease-drawer);
