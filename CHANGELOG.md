@@ -1,5 +1,11 @@
 # Cambios
 
+## 0.10.1 — 2026-11-21
+
+- `.db-rail-scroll`: barra de desplazamiento fina y oscura. Con el tema claro
+  el navegador dibujaba su barra blanca de 15 px sobre el riel, que es oscuro
+  en los dos temas; se veía en el menú del teléfono de Parte Diario.
+
 ## 0.10.0 — 2026-11-19
 
 - Logo más chico: símbolo de 48 a 40 px y «DAYBOOK» de 16 a 14 px; el bloque
