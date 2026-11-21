@@ -307,6 +307,11 @@
     radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.5), transparent) top / 100% 10px no-repeat scroll,
     radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.5), transparent) bottom / 100% 10px no-repeat scroll;
   background-color: var(--db-rail-bg);
+  /* El riel es oscuro en los dos temas: sin esto, con el tema claro el
+   * navegador pintaba su barra blanca de 15 px encima del panel. */
+  color-scheme: dark;
+  scrollbar-width: thin;
+  scrollbar-color: var(--db-rail-border) transparent;
 }
 
 /* ── El cajón del teléfono ────────────────────────────────────────────────────

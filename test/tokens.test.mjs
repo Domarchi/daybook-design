@@ -251,3 +251,11 @@ test("riel.css 0.10: pie, cajón, velo y movimiento reducido", () => {
   assert.equal(tokens.escala["rail-avatar"], "34px");
   for (const tema of ["light", "dark"]) assert.ok(tokens[tema]["rail-scrim"], `${tema}: falta rail-scrim`);
 });
+
+test("riel.css 0.10.1: la barra de la lista es oscura también con el tema claro", () => {
+  const css = readFileSync(join(raiz, "src/riel.css"), "utf8");
+  const bloque = css.slice(css.indexOf(".db-rail-scroll {"), css.indexOf("}", css.indexOf(".db-rail-scroll {")));
+  assert.match(bloque, /color-scheme: dark;/);
+  assert.match(bloque, /scrollbar-width: thin;/);
+  assert.match(bloque, /scrollbar-color: var\(--db-rail-border\) transparent;/);
+});
